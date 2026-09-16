@@ -1,0 +1,145 @@
+{
+  "meta": { "ref": "SOW-2201", "version": "v1.0", "date": "2026-09-15" },
+  "doc_control": {
+    "client_legal_name": "Northwind Retail Group B.V.",
+    "cegeka_entity": "Cegeka NV",
+    "msa_date": "2025-03-01",
+    "effective_date": "2026-10-01",
+    "sow_owner_cegeka": "Anke Peeters, Engagement Lead, anke.peeters@cegeka.com",
+    "sow_owner_client": ""
+  },
+  "exec_summary": {
+    "narrative": "Northwind's invoice-matching process is largely manual, creating a backlog during peak season. Cegeka will deliver an AI-assisted matching workflow validated against a defined test set, on a phased fixed-fee basis.",
+    "what_we_deliver": "An AI-assisted invoice matching pilot integrated with the existing ERP.",
+    "how_success_measured": "Matching precision on a frozen test set, and manual-effort reduction.",
+    "commercial_headline": "Fixed fee per phase, EUR 180,000 total across Discovery, Design, and Pilot."
+  },
+  "context_scope": {
+    "business_context": "Northwind's finance shared-service centre processes 40,000 invoices/month; roughly 30% require manual matching against purchase orders, causing month-end close delays.",
+    "objectives": [
+      { "text": "Reduce manual invoice-matching effort by an estimated 40% via an AI-assisted workflow, validated against a defined test set.", "type": "tactical" },
+      { "text": "Establish the data foundation for Northwind's 2027 finance automation roadmap.", "type": "strategic" }
+    ],
+    "workstreams": [
+      { "workstream": "Discovery & Data Assessment", "in_scope": "Invoice/PO data inventory across 2 ERP instances; data quality profiling", "out_of_scope": "Remediation of data quality issues found" },
+      { "workstream": "Pilot Build", "in_scope": "Matching model + review UI for one business unit", "out_of_scope": "Rollout to other business units" }
+    ],
+    "assumptions": [
+      "Data volumes do not exceed 50,000 invoices/month and are provided as CSV exports from the ERP.",
+      "Client provides access to named systems within 5 business days of request.",
+      "Client provides 8 hours/week of named SME time."
+    ],
+    "prerequisites": [
+      "ERP read access and credentials for the named Cegeka team members.",
+      "VPN access provisioned and tested.",
+      "Confirmed availability of the named finance SME."
+    ],
+    "data_provided": "Historical invoice and PO records (24 months), exported monthly as CSV from the SAP and Dynamics instances.",
+    "reference_case_study_allowed": true,
+    "dependencies": [
+      "Northwind's concurrent ERP consolidation project proceeding on its stated schedule."
+    ]
+  },
+  "success_metrics": [
+    { "metric": "Matching precision", "definition": "TP / (TP+FP) on the frozen 500-invoice test set in Appendix B", "target": ">=0.85", "window": "30 days post pilot go-live", "validated_by": "Joint" },
+    { "metric": "Manual effort reduction", "definition": "Baseline vs. post-pilot minutes/invoice on matched subset", "target": "-40%", "window": "60 days post go-live", "validated_by": "Client Finance Ops" }
+  ],
+  "deliverables": [
+    { "id": "D1", "name": "Data & AI Readiness Assessment report", "priority": "must-have", "format": "PDF", "milestone": "M1", "target_date": "2026-10-24", "acceptance_criteria": "Covers agreed dimensions in Appendix B; presented to steering committee", "acceptance_process": "Client has 3 business days to review; deemed accepted if no written objection" },
+    { "id": "D2", "name": "Matching pilot model + review UI", "priority": "must-have", "format": "Deployed to test environment", "milestone": "M2", "target_date": "2026-12-12", "acceptance_criteria": "Meets Success Metrics in Section 4 on the frozen test set", "acceptance_process": "Joint review session; pass/fail recorded in Acceptance Log" },
+    { "id": "D3", "name": "Runbook & training session", "priority": "should-have", "format": "PDF + live session", "milestone": "M2", "target_date": "2026-12-19", "acceptance_criteria": "", "acceptance_process": "" }
+  ],
+  "acceptance": {
+    "review_window_business_days": 3,
+    "rework_rounds_included": "2",
+    "checkpoint_timing": "At approximately two-thirds of elapsed pilot duration,",
+    "checkpoint_description": "the parties hold a joint checkpoint to confirm the pilot remains on track to meet the Section 4 targets; outcome (continue/adjust/stop) is recorded in writing."
+  },
+  "approach": {
+    "project_type": "poc_pilot",
+    "phases": [
+      { "phase": "Discovery & Feasibility", "fee_treatment": "Fixed fee", "gate_decision": "Go/no-go + re-baseline of Pilot pricing" },
+      { "phase": "Pilot", "fee_treatment": "Fixed fee", "gate_decision": "Meets Success Metrics -> proceed to scale discussion" },
+      { "phase": "Hypercare", "fee_treatment": "T&M", "gate_decision": "Not applicable for this pilot" }
+    ],
+    "technical_description": "Azure-hosted matching service using Azure OpenAI for line-item extraction and a rules+ML hybrid matcher; integrates with SAP and Dynamics via existing export jobs.",
+    "governance_cadence": "Bi-weekly steering committee; weekly RAG status email."
+  },
+  "roles": {
+    "cegeka_team": "1 Engagement Lead (20%), 1 Data Scientist (80%), 1 Data Engineer (50%).",
+    "client_team": "1 Finance Ops Sponsor, 1 SME (8h/week).",
+    "client_obligations": [
+      "Named business sponsor with decision authority, available within 3 business days for approvals.",
+      "Timely provisioning of data access and environments per Section 3.4."
+    ],
+    "delay_grace_business_days": "5"
+  },
+  "timeline": [
+    { "milestone": "Kick-off (M0)", "target_date": "2026-10-01", "dependency": "Contract execution" },
+    { "milestone": "Discovery complete (M1)", "target_date": "2026-10-24", "dependency": "Data access per 3.4" },
+    { "milestone": "Pilot complete (M2)", "target_date": "2026-12-19", "dependency": "" }
+  ],
+  "commercial_model": "fixed_fee",
+  "commercial": {
+    "total_fee": "EUR 180,000",
+    "milestone_payments": [
+      { "milestone": "M1", "deliverable": "D1", "target_date": "2026-10-24", "amount": "30%", "trigger": "Upon acceptance" },
+      { "milestone": "M2", "deliverable": "D2, D3", "target_date": "2026-12-19", "amount": "70%", "trigger": "Upon metric validation" }
+    ],
+    "payment_terms": "Net 30 from invoice date, EUR.",
+    "expenses_policy": "Pre-approved travel only, invoiced at cost.",
+    "pass_through_policy": "Azure OpenAI consumption is pass-through, invoiced at cost + 5% handling fee, capped at EUR 1,500/month absent written pre-approval.",
+    "cofunding_program": "",
+    "invoicing_address": "Northwind Retail Group B.V., Finance Dept, Amsterdam",
+    "invoicing_email": "ap@northwindretail.example",
+    "po_number": ""
+  },
+  "term": {
+    "end_condition": "final deliverable acceptance under this SOW",
+    "termination_notice_days": "30",
+    "transition_assistance": "Handover documentation included; no additional fee if requested within 30 days of termination."
+  },
+  "ip": {
+    "model_artifacts_ownership": "The fine-tuned matching model and prompts created specifically for Client are licensed to Client for use with the deliverable; the underlying foundation model remains the property of its vendor."
+  },
+  "data_protection": {
+    "processor_role": "Cegeka acts as Processor on Client's behalf under the DPA referenced in the MSA.",
+    "subprocessors": ["Microsoft Azure OpenAI Service (EU data boundary)"],
+    "retention_policy": ""
+  },
+  "regulatory": {
+    "ai_risk_classification": "To be jointly determined during Discovery.",
+    "human_oversight": "All matches below 0.9 confidence are routed to human review before posting.",
+    "bias_fairness_testing": "Out of scope for this pilot; matching model operates on transactional data only."
+  },
+  "liability": {
+    "cap": ""
+  },
+  "contacts": {
+    "client_day_to_day": "Sara de Vries, Finance Ops Manager, Northwind, sara.devries@northwindretail.example, +31 20 555 0101",
+    "cegeka_day_to_day": "Anke Peeters, Engagement Lead, Cegeka, anke.peeters@cegeka.com, +32 11 555 0202"
+  },
+  "open_items": [
+    {
+      "section": "12.7 — Invoicing details",
+      "question": "Client has not provided a PO number/reference.",
+      "why_it_matters": "Northwind's AP process may require a PO on every invoice to pay it.",
+      "risk_if_unresolved": "First invoice could bounce or be delayed, straining the relationship right after go-live.",
+      "suggested_owner": "Client"
+    },
+    {
+      "section": "17.3 — Liability cap",
+      "question": "No liability cap value confirmed for this SOW.",
+      "why_it_matters": "MSA may not specify a cap applicable to fixed-fee pilots of this size.",
+      "risk_if_unresolved": "Uncapped or ambiguous liability exposure on a signed SOW.",
+      "suggested_owner": "Joint"
+    },
+    {
+      "section": "15 — Data retention",
+      "question": "Post-engagement retention/deletion policy for the test set and interim model artifacts not yet stated.",
+      "why_it_matters": "Client data protection team is likely to ask before sign-off.",
+      "risk_if_unresolved": "Sign-off delay, or a compliance gap if data lingers unmanaged after project close.",
+      "suggested_owner": "Cegeka"
+    }
+  ]
+}

@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Statement of Work Template: Data, AI &amp; Knowledge Services — Cegeka</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: '#002B49',
+          slate: '#4A5568',
+          gold: '#B8860B',
+          risk: '#A52A2A',
+          canvas: '#FCFDFE',
+          divider: '#E2E8F0'
+        },
+        fontFamily: {
+          serif: ['"Playfair Display"', 'Georgia', 'serif'],
+          sans: ['"Inter"', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace']
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body { background-color:#FCFDFE; color:#4A5568; font-family:'Inter',sans-serif; }
+  h1,h2,h3,.font-headline { font-family:'Playfair Display',serif; }
+  .code-font { font-family:'JetBrains Mono',monospace; }
+  .strategic-callout { border-left:4px solid #002B49; background-color:rgba(0,43,73,0.03); }
+  .risk-callout { border-left:4px solid #A52A2A; background-color:rgba(165,42,42,0.04); }
+  .gold-callout { border-left:4px solid #B8860B; background-color:rgba(184,134,11,0.04); }
+  .exhibit-source { font-size:0.7rem; color:rgba(74,85,104,0.7); font-family:'JetBrains Mono',monospace; }
+  .clause-card { background:#fff; border:1px solid #E2E8F0; border-radius:0.5rem; }
+  .clause-card table { width:100%; border-collapse:collapse; font-size:0.85rem; }
+  .clause-card th { background:#002B49; color:#fff; text-transform:uppercase; letter-spacing:.03em; font-size:0.7rem; padding:0.6rem 0.75rem; text-align:left; }
+  .clause-card td { padding:0.6rem 0.75rem; border-top:1px solid #E2E8F0; vertical-align:top; }
+  .clause-card tr:hover td { background:rgba(0,43,73,0.02); }
+  .placeholder { color:#B8860B; font-style:italic; }
+  .checkbox-item { display:flex; align-items:flex-start; gap:0.6rem; }
+  .checkbox-item .box { width:16px; height:16px; min-width:16px; border:2px solid #002B49; border-radius:3px; margin-top:2px; }
+  @media print {
+    .no-print { display:none !important; }
+    body { background:white; color:black; counter-reset:page; }
+    .page-break { page-break-before: always; }
+    .shadow-sm,.shadow-md,.shadow-lg { box-shadow:none !important; border:1px solid #E2E8F0; }
+    .print-page-number::after { counter-increment:page; content:"Page " counter(page); }
+    @page { margin:18mm 14mm 16mm 14mm; }
+  }
+</style>
+</head>
+<body class="bg-canvas antialiased min-h-screen text-slate flex flex-col">
+
+<!-- Nav -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-divider shadow-sm no-print">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <div class="flex items-center space-x-4">
+      <span class="text-xs font-bold uppercase tracking-widest text-navy bg-navy/5 px-2.5 py-1 rounded">Internal Use Only</span>
+      <span class="text-sm font-semibold text-slate/70">SOW Template — Data, AI &amp; Knowledge Services</span>
+    </div>
+    <nav class="hidden lg:flex space-x-5 text-xs font-medium text-slate">
+      <a href="#exec-summary" class="hover:text-navy transition-colors">Exec Summary</a>
+      <a href="#context-scope" class="hover:text-navy transition-colors">Context &amp; Scope</a>
+      <a href="#approach" class="hover:text-navy transition-colors">Approach</a>
+      <a href="#commercial-model" class="hover:text-navy transition-colors">Commercial Model</a>
+      <a href="#commercial-terms" class="hover:text-navy transition-colors">Commercial Terms</a>
+      <a href="#checklist" class="hover:text-navy transition-colors">Pre-Flight Checklist</a>
+    </nav>
+    <button onclick="window.print()" class="inline-flex items-center space-x-2 bg-navy text-white text-xs font-semibold px-4 py-2 rounded shadow hover:bg-navy/90 transition-all">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+      <span>Print / PDF</span>
+    </button>
+  </div>
+</header>
+
+<!-- Cover -->
+<section class="max-w-3xl mx-auto px-6 pt-24 pb-16 text-center">
+  <span class="text-xs font-semibold uppercase tracking-wider text-gold bg-gold/10 px-3 py-1 rounded-full">Internal Use Only</span>
+  <h1 class="font-serif text-5xl font-bold text-navy mt-8 mb-4">Statement of Work — Data, AI &amp; Knowledge Services</h1>
+  <p class="text-lg text-slate leading-relaxed mb-10">Best-practice template and drafting guidance for fixed-fee and outcome-based advisory and delivery engagements.</p>
+  <div class="flex justify-center gap-12 text-sm">
+    <div>
+      <p class="text-xs uppercase tracking-wider text-slate/60 mb-1">Prepared for</p>
+      <p class="font-semibold text-navy">Cegeka Data &amp; AI Practice</p>
+    </div>
+    <div>
+      <p class="text-xs uppercase tracking-wider text-slate/60 mb-1">Document type</p>
+      <p class="font-semibold text-navy">Internal SOW Template + Guidance</p>
+    </div>
+    <div>
+      <p class="text-xs uppercase tracking-wider text-slate/60 mb-1">Date</p>
+      <p class="font-semibold text-navy code-font">2026-09-15</p>
+    </div>
+  </div>
+</section>
+<div class="page-break"></div>
+
+<main class="max-w-5xl mx-auto px-6 py-10 flex-grow w-full space-y-14">
+
+  <!-- Title/metadata block -->
+  <section class="border-b border-divider pb-8">
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-semibold uppercase tracking-wider text-gold bg-gold/10 px-3 py-1 rounded-full">Internal Use Only</span>
+        <span class="text-xs font-mono text-slate/70">Ref: SOW-TEMPLATE-DATA-AI-20260915</span>
+      </div>
+      <div class="text-sm text-slate font-medium"><strong>Version:</strong> v1.0 &nbsp;|&nbsp; <strong>Date:</strong> 2026-09-15</div>
+    </div>
+    <h1 class="text-3xl sm:text-4xl font-bold text-navy mb-3">How to read this document</h1>
+    <p class="text-lg text-slate leading-relaxed">
+      This is a dual-layer reference: client-facing <strong class="text-navy">clause text</strong> (white contract cards, numbered per section) is interleaved with
+      <strong class="text-gold">Drafting Guidance</strong> (gold-bordered callouts) explaining why a clause exists and what to watch for. Strip every gold callout before sending an SOW to a client — they are for the drafting team only.
+    </p>
+  </section>
+
+  <!-- Section 0 -->
+  <section class="space-y-6">
+    <div class="flex items-center space-x-3">
+      <div class="w-2 h-6 bg-navy rounded-sm"></div>
+      <h2 class="text-2xl font-bold text-navy">Why Data/AI/Knowledge SOWs Are Different</h2>
+    </div>
+    <p class="text-slate leading-relaxed">Seven structural risks make this category harder to put on fixed-fee/outcome-based terms than a standard IT delivery SOW — everything downstream is built to manage these explicitly.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="clause-card p-5">
+        <h4 class="font-semibold text-navy text-sm mb-1">1. Unknown inputs at signature</h4>
+        <p class="text-xs text-slate leading-relaxed">Scope is set against data you haven't yet profiled for quality or completeness — the single biggest source of fixed-fee margin erosion.</p>
+      </div>
+      <div class="clause-card p-5">
+        <h4 class="font-semibold text-navy text-sm mb-1">2. Probabilistic outcomes</h4>
+        <p class="text-xs text-slate leading-relaxed">An AI model or analytics finding can't be warranted "correct" like a CRUD feature. Outcome fees must pin to thresholds, not open promises.</p>
+      </div>
+      <div class="clause-card p-5">
+        <h4 class="font-semibold text-navy text-sm mb-1">3. Advisory bleeds into delivery</h4>
+        <p class="text-xs text-slate leading-relaxed">Assessment/strategy work shades into build without a clean boundary unless the SOW forces a re-scoping gate.</p>
+      </div>
+      <div class="clause-card p-5">
+        <h4 class="font-semibold text-navy text-sm mb-1">4. Third-party model/platform dependency</h4>
+        <p class="text-xs text-slate leading-relaxed">Hyperscaler/LLM pricing, rate limits, and deprecations sit outside your control and must be flowed through, not absorbed.</p>
+      </div>
+      <div class="clause-card p-5">
+        <h4 class="font-semibold text-navy text-sm mb-1">5. Entangled IP</h4>
+        <p class="text-xs text-slate leading-relaxed">Client data, client IP, your reusable accelerators, model weights, and prompts each need separate ownership treatment.</p>
+      </div>
+      <div class="clause-card p-5">
+        <h4 class="font-semibold text-navy text-sm mb-1">6. Growing regulatory exposure</h4>
+        <p class="text-xs text-slate leading-relaxed">GDPR, EU AI Act risk-tiering, sector rules, and client responsible-AI policies all bear on scope and liability.</p>
+      </div>
+      <div class="clause-card p-5 md:col-span-2">
+        <h4 class="font-semibold text-navy text-sm mb-1">7. Client-side dependencies dominate the critical path</h4>
+        <p class="text-xs text-slate leading-relaxed">Data access approvals, SME availability, and decision latency are usually the real gating factor — a fixed-fee/outcome-based deal that doesn't tie price and timeline to client obligations is a deal where you eat the risk of someone else's delay.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 1: Executive Summary -->
+  <section id="exec-summary" class="space-y-6">
+    <div class="flex items-center space-x-3">
+      <div class="w-2 h-6 bg-navy rounded-sm"></div>
+      <h2 class="text-2xl font-bold text-navy">1. Executive Summary</h2>
+    </div>
+    <div class="clause-card p-5 space-y-3 text-sm text-slate">
+      <p><span class="placeholder">[3–5 sentence narrative: the business situation, what Cegeka will deliver, why it matters now, and the headline commercial model (fixed fee / outcome-based / hybrid).]</span> Written in plain, engaging language rather than legal register — this is the page a sponsor reads before deciding whether to read the rest.</p>
+      <p>The engagement begins with a pre-kickoff <strong class="text-navy">Engagement &amp; Resource Planning session</strong> (Section 8), at which both parties confirm plans, roles, and open items before work formally starts. Client-side prerequisites (Section 3.4) — system access, connectivity, hardware, SME availability, and documentation — must be confirmed in place at least <strong>5 business days</strong> before the start of that session.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white p-5 rounded-lg border border-divider shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="w-8 h-8 rounded bg-navy/10 text-navy font-bold flex items-center justify-center mb-3 font-mono text-sm">01</div>
+          <h4 class="font-semibold text-navy text-base mb-2">What we will deliver</h4>
+          <p class="text-xs text-slate leading-relaxed">One-line summary of the headline deliverable(s) — cross-reference Section 5.</p>
+        </div>
+      </div>
+      <div class="bg-white p-5 rounded-lg border border-divider shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="w-8 h-8 rounded bg-gold/10 text-gold font-bold flex items-center justify-center mb-3 font-mono text-sm">02</div>
+          <h4 class="font-semibold text-navy text-base mb-2">How success is measured</h4>
+          <p class="text-xs text-slate leading-relaxed">One-line summary of the success metric(s) — cross-reference Section 4.</p>
+        </div>
+      </div>
+      <div class="bg-white p-5 rounded-lg border border-divider shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="w-8 h-8 rounded bg-navy/10 text-navy font-bold flex items-center justify-center mb-3 font-mono text-sm">03</div>
+          <h4 class="font-semibold text-navy text-base mb-2">Commercial headline</h4>
+          <p class="text-xs text-slate leading-relaxed">Fee, model, and duration in one line — cross-reference Sections 11–12.</p>
+        </div>
+      </div>
+    </div>
+    <div class="gold-callout p-5 rounded-r-lg space-y-1">
+      <div class="text-gold font-bold text-xs uppercase tracking-wide">Drafting Guidance</div>
+      <p class="text-sm text-slate leading-relaxed">An Executive Summary is optional for very short SOWs but recommended by default — it makes the document read as a live proposal rather than a static legal form, and gives a senior sponsor who won't read the clauses a reason to engage with the rest. Keep it to a page; every claim in it must be traceable to a numbered section later in the document — never introduce a commitment here that isn't repeated (and made precise) downstream.</p>
+      <p class="text-sm text-slate leading-relaxed">The prerequisites lead-time and pre-kickoff planning session are called out here deliberately, not just buried in Section 3/8 — a sponsor who only reads this page still needs to know their team has a concrete, dated obligation before day one, or the start date silently slips.</p>
+    </div>
+  </section>
+
+  <!-- Section 2: Document Control -->
+  <section class="space-y-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-2 h-6 bg-navy rounded-sm"></div>
+      <h2 class="text-2xl font-bold text-navy">2. Document Control</h2>
+    </div>
+    <div class="clause-card overflow-hidden">
+      <table>
+        <tbody>
+          <tr><td class="font-semibold text-navy w-1/3">Client</td><td class="placeholder">[Client Legal Entity Name]</td></tr>
+          <tr><td class="font-semibold text-navy">Cegeka Entity</td><td class="placeholder">[Cegeka Legal Entity Name]</td></tr>
+          <tr><td class="font-semibold text-navy">SOW reference number</td><td class="placeholder">[SOW-####]</td></tr>
+          <tr><td class="font-semibold text-navy">Parent agreement</td><td>This SOW is issued under, and governed by, the Master Services Agreement (MSA) dated <span class="placeholder">[date]</span> between the parties. In case of conflict, the MSA prevails unless this SOW expressly states otherwise.</td></tr>
+          <tr><td class="font-semibold text-navy">Effective date</td><td class="placeholder">[date]</td></tr>
+          <tr><td class="font-semibold text-navy">SOW owner (Cegeka)</td><td class="placeholder">[name, role, email]</td></tr>
+          <tr><td class="font-semibold text-navy">SOW owner (Client)</td><td class="placeholder">[name, role, email]</td></tr>
+          <tr><td class="font-semibold text-navy">Version</td><td class="placeholder">[v1.0]</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="gold-callout p-5 rounded-r-lg space-y-1">
+      <div class="text-gold font-bold text-xs uppercase tracking-wide">Drafting Guidance</div>
+      <p class="text-sm text-slate leading-relaxed">Always anchor to an MSA. If none exists, this SOW must include full commercial-legal terms (liability, IP, confidentiality, data protection) rather than assuming they live elsewhere — flag this explicitly in the doc control table so nobody assumes an MSA exists when it doesn't.</p>
+    </div>
+  </section>
+
+  <!-- Section 3: Business Context, Objectives & Scope (merged) -->
+  <section id="context-scope" class="space-y-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-2 h-6 bg-navy rounded-sm"></div>
+      <h2 class="text-2xl font-bold text-navy">3. Business Context, Objectives &amp; Scope of Services</h2>
+    </div>
+    <div class="clause-card p-5 space-y-3 text-sm text-slate">
+      <p><strong class="text-navy">3.1 Business context.</strong> <span class="placeholder">[1–2 paragraphs: what business problem or opportunity triggers this engagement, in the client's language, not ours.]</span></p>
+      <p><strong class="text-navy">3.2 Objectives.</strong> State 3–5 outcome statements, each measurable or at least falsifiable, and tag each as <strong>tactical</strong> (near-term, operational) or <strong>strategic</strong> (contributes to a larger, multi-phase ambition):</p>
+      <ul class="list-disc pl-6 space-y-1">
+        <li><span class="placeholder">[Tactical]</span> e.g., "Reduce manual invoice-matching effort by an estimated X% via an AI-assisted matching workflow, validated against a defined test set."</li>
+        <li><span class="placeholder">[Strategic]</span> e.g., "Establish the data foundation that the client's 2027 AI investment case depends on."</li>
+      </ul>
+    </div>
+    <p class="text-xs font-semibold uppercase tracking-wider text-navy/70">Exhibit 1: Scope by Workstream</p>
+    <div class="clause-card overflow-x-auto">
+      <table>
+        <thead><tr><th>Workstream</th><th>In-scope activities</th><th>Out of scope (explicitly)</th></tr></thead>
+        <tbody>
+          <tr><td>Discovery &amp; Data Assessment</td><td>data source inventory across up to N systems; data quality profiling; access/entitlement review</td><td>Remediation of data quality issues found (see Change Control)</td></tr>
+          <tr><td>Solution Design</td><td>target architecture, model/approach selection, evaluation plan</td><td>Vendor procurement/licensing negotiation</td></tr>
+          <tr><td>Build / Implementation</td><td>scope by deliverable — see Section 5</td><td>Integration with systems not named in Appendix A</td></tr>
+          <tr><td>Change Enablement / Knowledge Transfer</td><td>training sessions, runbooks, playbooks</td><td>Ongoing operational support post-handover</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="exhibit-source">Source: engagement-specific scoping workshop.</p>
+    <div class="clause-card p-5 space-y-3 text-sm text-slate">
+      <p><strong class="text-navy">3.3 Assumptions.</strong> Fixed-fee pricing is conditioned on these holding true — see Section 9 on Change Control if they don't.</p>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Data volumes do not exceed <span class="placeholder">[X]</span> and are provided in <span class="placeholder">[format/location/system]</span>.</li>
+        <li>Client provides access to named systems within <span class="placeholder">[X business days]</span> of request.</li>
+        <li>Client provides <span class="placeholder">[N]</span> hours/week of named SME time (see RACI, Section 7.3).</li>
+        <li>Existing infrastructure/tenant (e.g., Azure/AWS/Databricks) is available and licensed by Client; consumption costs for compute/LLM API usage are billed separately/pass-through (Section 12.5) and are <strong>not</strong> included in the fixed fee.</li>
+        <li>No more than <span class="placeholder">[N]</span> rounds of feedback/revision per deliverable are included (see Section 6).</li>
+        <li><span class="placeholder">[Language]</span> is the working language for all deliverables.</li>
+      </ul>
+      <p><strong class="text-navy">3.4 Prerequisites.</strong> The following must be confirmed in place at least <strong>5 business days</strong> before the pre-kickoff Engagement &amp; Resource Planning session (Section 8):</p>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>System and application access/credentials for the named Cegeka team members.</li>
+        <li>Network connectivity (VPN/remote access as applicable) provisioned and tested.</li>
+        <li>Where Cegeka staff work on Client-issued hardware: device(s) provisioned and shipped/available.</li>
+        <li>Confirmed availability of the named SMEs identified in Section 7.2.</li>
+        <li>Access to existing documentation relevant to the engagement (architecture, data dictionaries, prior assessments, etc.).</li>
+      </ul>
+      <p><strong class="text-navy">3.5 Data provided by Client.</strong> List data sources, systems, expected format, refresh cadence, and Client's warranty regarding lawful basis for Cegeka's processing of that data (ties to Section 15).</p>
+      <p><strong class="text-navy">3.6 Reference &amp; case-study use (optional).</strong> Subject to Client's prior written approval on each occasion, Cegeka may reference the existence and general nature of this engagement — but not confidential details or data — as a case study or reference in Cegeka marketing materials.</p>
+      <p><strong class="text-navy">3.7 Dependencies.</strong> Unlike Assumptions (3.3, which concern Client's own commitments) and Prerequisites (3.4, which concern pre-start readiness), Dependencies are external factors outside either party's direct control that could affect scope, quality, or timeline if they change:</p>
+      <ul class="list-disc pl-6 space-y-1">
+        <li><span class="placeholder">[e.g., delivery of a related workstream by another vendor/system integrator]</span></li>
+        <li><span class="placeholder">[e.g., availability of a specific third-party API/dataset/licence]</span></li>
+        <li><span class="placeholder">[e.g., a concurrent client-internal project or decision (e.g., platform migration) that this engagement's plan assumes proceeds on schedule]</span></li>
+      </ul>
+    </div>
+    <div class="gold-callout p-5 rounded-r-lg space-y-2">
+      <div class="text-gold font-bold text-xs uppercase tracking-wide">Drafting Guidance</div>
+      <p class="text-sm text-slate leading-relaxed">Business Context, Objectives, and Scope sit together deliberately: a reviewer should see what problem this solves, what "done" looks like, and exactly what's in and out, in one continuous read — before hitting any technical or commercial detail. Put out-of-scope immediately after in-scope, not at the end of the document, so it can't be missed.</p>
+      <p class="text-sm text-slate leading-relaxed"><strong>PoC / pilot storytelling.</strong> If this SOW covers a proof of concept or pilot, Section 3.1 must explicitly place it inside a larger narrative: what this phase is intended to prove, what target end-state it feeds into, and what decision it unlocks if successful. Don't let a PoC read as an isolated, disconnected exercise — tie every deliverable back to something strategic.</p>
+      <p class="text-sm text-slate leading-relaxed"><strong>3.3 vs. 3.4 vs. 3.7 — keep these conceptually distinct.</strong> Assumptions are things you are pricing on the belief they're true (e.g., data volume). Prerequisites are a dated, checkable readiness gate before work starts (access, hardware, SME confirmation) — important enough that it also belongs in the Executive Summary, since a missed prerequisite is the single most common cause of a slipped kickoff date. Dependencies are outside both parties' control — flagging them doesn't remove risk, but it does mean a dependency failure is a Change Control trigger (Section 9) rather than a silent absorption of delay cost.</p>
+    </div>
+  </section>
+
+  <!-- Section 4: Success Metrics -->
+  <section class="space-y-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-2 h-6 bg-navy rounded-sm"></div>
+      <h2 class="text-2xl font-bold text-navy">4. Success Metrics <span class="text-sm font-normal text-slate/60">(mandatory for Outcome-Based / Hybrid)</span></h2>
+    </div>
+    <p class="text-xs font-semibold uppercase tracking-wider text-navy/70">Exhibit 2: Success Metrics Table</p>
+    <div class="clause-card overflow-x-auto">
+      <table>
+        <thead><tr><th>#</th><th>Metric</th><th>Definition &amp; measurement method</th><th>Target</th><th>Window</th><th>Validated by</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>e.g., Model precision</td><td>exact formula, test set definition, evaluation harness</td><td>≥0.85</td><td>30 days post go-live</td><td>Joint / Cegeka / Client</td></tr>
+          <tr><td>2</td><td>e.g., User adoption</td><td>% of eligible users completing ≥1 workflow/week</td><td>≥60%</td><td>60 days post go-live</td><td></td></tr>
+          <tr><td>3</td><td>e.g., Cycle-time reduction</td><td>baseline vs. post measurement methodology</td><td>-30%</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="exhibit-source">Source: engagement-specific — to be agreed jointly during Discovery.</p>
+    <div class="gold-callout p-5 rounded-r-lg space-y-2">
+      <div class="text-gold font-bold text-xs uppercase tracking-wide">Drafting Guidance — four things that make a metric enforceable</div>
+      <ul class="text-sm text-slate leading-relaxed list-disc pl-5 space-y-1">
+        <li><strong>Fixed test/evaluation set</strong>, agreed and frozen before build starts. If the client can change the test set after seeing results, it isn't a metric.</li>
+        <li><strong>A stated baseline.</strong> "30% cycle-time reduction" is meaningless without an agreed pre-engagement baseline measurement method and date.</li>
+        <li><strong>A measurement window with a hard stop.</strong> Otherwise "we'll keep measuring adoption" becomes unbounded warranty.</li>
+        <li><strong>Named attribution of confounds</strong> — state the metric is measured "assuming no material change to [upstream data feed / organizational process / staffing]."</li>
+      </ul>
+      <p class="text-sm text-slate leading-relaxed">Never use unbounded/comparative language ("better," "more accurate," "state of the art") as the metric itself — only as color commentary around a numeric target.</p>
+    </div>
+  </section>
+
+  <!-- Section 5: Deliverables & Acceptance -->
+  <section class="space-y-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-2 h-6 bg-navy rounded-sm"></div>
+      <h2 class="text-2xl font-bold text-navy">5. Deliverables, Milestones &amp; Acceptance Criteria</h2>
+    </div>
+    <p class="text-xs font-semibold uppercase tracking-wider text-navy/70">Exhibit 3: Deliverables &amp; Milestone Linkage</p>
+    <div class="clause-card overflow-x-auto">
+      <table>
+        <thead><tr><th>#</th><th>Deliverable</th><th>Format</th><th>Linked milestone (Section 12)</th><th>Target date</th><th>Acceptance criteria</th><th>Acceptance process &amp; timeline</th></tr></thead>
+        <tbody>
+          <tr><td>D1</td><td>e.g., Data &amp; AI Maturity Assessment report</td><td>PDF/PPT</td><td>M1</td><td class="code-font">[date]</td><td>Covers agreed dimensions in Appendix B; presented to steering committee</td><td>Client has 3 business days to review; deemed accepted if no written objection</td></tr>
+          <tr><td>D2</td><td>e.g., Target-state architecture &amp; roadmap</td><td>PPT + Confluence page</td><td>M2</td><td class="code-font">[date]</td><td>Approved by named sponsor</td><td>Sign-off via email/e-signature within 3 business days</td></tr>
+          <tr><td>D3</td><td>e.g., PoC / pilot model</td><td>Code repo + evaluation report</td><td>M3</td><td class="code-font">[date]</td><td>Meets Success Metrics in Section 4 on agreed test set</td><td>Joint review session; pass/fail recorded in Acceptance Log</td></tr>
+          <tr><td>D4</td><td>e.g., Production-ready component</td><td>Deployed to env</td><td>M4</td><td class="code-font">[date]</td><td>Passes UAT test cases in Appendix C; no Severity 1/2 defects open</td><td>UAT window of 3 business days</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="exhibit-source">Source: engagement-specific delivery plan; every deliverable ties to exactly one invoicing milestone and target date in Section 12.2, matching the Timeline in Section 8.</p>
+    <div class="clause-card p-5 space-y-2 text-sm">
+      <p><strong class="text-navy">5.1 Acceptance procedure.</strong></p>
+      <ul class="list-disc pl-6 space-y-1 text-slate">
+        <li>Cegeka delivers and notifies Client in writing.</li>
+        <li>Client reviews against the stated acceptance criteria only (not new/undocumented criteria) within a standard <strong>3 business day</strong> review window (see drafting guidance below).</li>
+        <li>Silence beyond the window = deemed acceptance.</li>
+        <li>Rejection must be in writing, citing the specific unmet criterion, within the window.</li>
+        <li><span class="placeholder">[N]</span> rounds of rework are included per deliverable for defects against stated criteria; issues outside the stated criteria are handled via Change Control (Section 9).</li>
+      </ul>
+      <p><strong class="text-navy">5.2 Progress checkpoint (value gate).</strong> At an agreed point in the engagement (e.g., approximately <span class="placeholder">[two-thirds]</span> of elapsed duration or spend), the parties hold a joint checkpoint to confirm the engagement remains on track to meet the Success Metrics in Section 4. The checkpoint outcome (continue / adjust / stop) and its consequence for remaining fees are recorded in writing; detailed operational governance mechanics for running this checkpoint sit in the project's own governance cadence (Section 6.5), not in this SOW.</p>
+    </div>
+    <div class="gold-callout p-5 rounded-r-lg space-y-2">
+      <div class="text-gold font-bold text-xs uppercase tracking-wide">Drafting Guidance</div>
+      <p class="text-sm text-slate leading-relaxed"><strong>Standardize the review window at 3 business days, not 10.</strong> A 10-day acceptance window (a common default carried over from some hyperscaler/vendor paper) is too long for a fixed-price engagement rhythm — it lets deemed-acceptance dates drift and stretches the whole delivery cadence. Three business days keeps momentum and still gives the client a genuine chance to review; extend it in writing on a specific deliverable if the content warrants it, rather than defaulting every deliverable to a long window.</p>
+      <p class="text-sm text-slate leading-relaxed">For AI/analytics deliverables, acceptance criteria must be pre-agreed and specific enough that a third party could adjudicate pass/fail without either party's testimony. Avoid criteria like "client is satisfied with the model" — replace with "model achieves the thresholds in Section 4 on the frozen test set in Appendix B." For advisory deliverables, tie acceptance to <em>presentation and coverage of agreed topics</em>, not to the client agreeing with the conclusions.</p>
+      <p class="text-sm text-slate leading-relaxed">Every deliverable maps to exactly one invoicing milestone <em>and</em> a specific target date — carrying the date as its own column (rather than leaving it only in the Timeline table) makes the deliverable-to-payment linkage visible on the same page a client finance reviewer is looking at.</p>
+    </div>
+  </section>
+
+  <!-- Section 6: Approach & Methodology -->
+  <section id="approach" class="space-y-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-2 h-6 bg-navy rounded-sm"></div>
+      <h2 class="text-2xl font-bold text-navy">6. Approach, Methodology &amp; Technical Description</h2>
+    </div>
+    <div class="clause-card p-5 space-y-3 text-sm text-slate">
+      <p><strong class="text-navy">6.1 Phases.</strong> <span class="placeholder">[e.g., Discover → Design → Build/Pilot → Scale/Rollout → Hypercare (where applicable) → Transition]</span>. For each phase: objective, duration, entry/exit criteria, gate decision.</p>
+      <p><strong class="text-navy">6.2 Gated fixed-fee structure (recommended for AI/data work).</strong> Rather than one fixed fee for an entire multi-month build, price and gate each phase separately, with a defined re-scoping checkpoint between them.</p>
+    </div>
+    <p class="text-xs font-semibold uppercase tracking-wider text-navy/70">Exhibit 4: Phase Gating &amp; Fee Treatment</p>
+    <div class="clause-card overflow-x-auto">
+      <table>
+        <thead><tr><th>Phase</th><th>Fee treatment</th><th>Gate decision at end of phase</th></tr></thead>
+        <tbody>
+          <tr><td>Discovery &amp; Feasibility</td><td>Fixed fee, short (2–4 weeks)</td><td>Go/no-go + re-baseline of subsequent phase pricing based on findings</td></tr>
+          <tr><td>Design</td><td>Fixed fee</td><td>Approved design = basis for Build fixed-fee quote</td></tr>
+          <tr><td>Build / Pilot</td><td>Fixed fee or outcome-based (Section 4)</td><td>Meets Success Metrics → proceed to scale; else remediation plan</td></tr>
+          <tr><td>Scale / Rollout</td><td>Fixed fee or outcome-based</td><td>Pilot is rolled out incrementally until an agreed adoption/critical-mass threshold is reached; handover / transition to run</td></tr>
+          <tr><td>Hypercare <span class="text-xs text-slate/60">(conditional — see guidance)</span></td><td>Fixed fee or T&amp;M, short defined window</td><td>Elevated post-go-live support ends at the earlier of the defined window or stabilization criteria being met</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="exhibit-source">Source: internal best-practice drafting guidance, 2026.</p>
+    <div class="strategic-callout p-5 rounded-r-lg space-y-2">
+      <div class="flex items-center space-x-2 text-navy font-bold text-sm uppercase tracking-wide">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <span>Strategic Synthesis: The gating mechanism reconciles "fixed fee" with unknown data quality</span>
+      </div>
+      <p class="text-sm text-slate leading-relaxed">You are not quoting one number for an unknown; you are quoting a small fixed fee for the phase that removes the unknown (Discovery), then re-quoting the next phase with better information. Selling this structure to clients who want one number up front is a commercial conversation, not a drafting problem — but it is the single highest-leverage practice for protecting margin on data/AI fixed-fee deals, and worth defending in negotiation.</p>
+    </div>
+    <div class="clause-card p-5 space-y-3 text-sm text-slate">
+      <p><strong class="text-navy">6.3 Technical description &amp; reference architecture.</strong> Describe the target technical/architecture area at a level sufficient for the client's architecture board to review, including: platform(s) used (e.g., Azure, Databricks, Snowflake), the reference architecture pattern applied, integration points, and any deviations from Cegeka's standard reference architecture with rationale.</p>
+      <p><strong class="text-navy">6.4 Governance &amp; reporting cadence.</strong> Steering committee frequency, status reporting format, and escalation path (Section 8). In addition to phase gates (6.2), maintain a recurring operational status checkpoint (e.g., weekly or bi-weekly) reporting simple on-track/off-track (RAG) status against plan. A brief client satisfaction (NPS) pulse may optionally be collected at phase transitions.</p>
+      <p><strong class="text-navy">6.5 Phase kick-off briefings.</strong> Each phase in 6.1 opens with a short briefing/knowledge-transfer session (train-the-trainer where relevant to the Client team) that: (a) confirms scope and expectations for the phase about to start, (b) marks a clear, unambiguous boundary between phases, and (c) supports the approval and invoicing trigger associated with the prior phase's completion (Section 12.2).</p>
+    </div>
+    <div class="gold-callout p-5 rounded-r-lg space-y-2">
+      <div class="text-gold font-bold text-xs uppercase tracking-wide">Drafting Guidance</div>
+      <p class="text-sm text-slate leading-relaxed">Keep 6.1 to phase names and gates — a full delivery-methodology description (e.g., a CRISP-DM walkthrough for an AI project) does not belong inside the SOW itself. If a methodology deep-dive adds value for the client, deliver it as a separate presentation/collateral; the SOW's job is to fix scope, gates, and fees, not to teach methodology.</p>
+      <p class="text-sm text-slate leading-relaxed"><strong>Hypercare is conditional on project type.</strong> A hypercare (elevated post-go-live support) phase applies to industrialization/production-rollout engagements. It does not apply to a PoC or an advisory-only engagement — remove the row entirely for those project types rather than leaving it in as unused boilerplate. Which optional phases apply should be driven by the engagement's project type classification at the point the SOW is drafted.</p>
+      <p class="text-sm text-slate leading-relaxed">6.5's phase-opening briefings are a small addition with a disproportionate payoff on fixed-price work: they create a hard, mutually-acknowledged line ("we are now leaving Design and entering Build") that both sides can point back to, which is exactly the moment acceptance, sign-off, and invoicing should trigger — rather than relying on an ambiguous sense that a phase has "basically" finished.</p>
+      <p class="text-sm text-slate leading-relaxed">The recurring RAG status checkpoint in 6.4 is distinct from, and cheaper than, the formal phase gates in 6.2 — it's a lightweight cadence that surfaces drift early. This is especially valuable on fixed-price engagements: a client who is told "we are off track" at week 3 can help unblock a dependency; a client who finds out at final delivery has grounds for a dispute instead.</p>
+    </div>
+  </section>
+
+  <!-- Section 7: Roles & Governance -->
+  <section class="space-y-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-2 h-6 bg-navy rounded-sm"></div>
+      <h2 class="text-2xl font-bold text-navy">7. Roles, Responsibilities &amp; Governance</h2>
+    </div>
+    <div class="clause-card p-5 space-y-3 text-sm">
+      <p><strong class="text-navy">7.1 Cegeka team.</strong> <span class="placeholder">[Roles, names/TBD, allocation %, key person clause if applicable.]</span></p>
+      <p><strong class="text-navy">7.2 Client team &amp; obligations.</strong> Be explicit — client obligations are the counterweight to your fixed-fee commitment:</p>
+      <ul class="list-disc pl-6 space-y-1 text-slate">
+        <li>Named business sponsor with decision authority, available within <span class="placeholder">[X]</span> business days for approvals.</li>
+        <li>Named data/SME contacts, <span class="placeholder">[N]</span> hours/week.</li>
+        <li>Timely provisioning of data access, credentials, and environments per the Prerequisites in Section 3.4 — see drafting guidance below on defining "timely."</li>
+        <li>Timely review and acceptance per Section 5.</li>
+        <li>Responsibility for the lawfulness, accuracy, and completeness of data provided (Section 15).</li>
+        <li>Responsibility for business decisions and actions taken based on Cegeka's advisory recommendations (Cegeka provides expert advice; Client retains decision authority — Section 17).</li>
+      </ul>
+      <p><strong class="text-navy">7.3 RACI.</strong> Table mapping each major activity to Responsible/Accountable/Consulted/Informed across both teams — see Appendix H. Show the RACI against the same phase timeline used in Section 8, so both teams' expected level of involvement over time is visible in one view, not just who is nominally responsible for what.</p>
+      <p><strong class="text-navy">7.4 Delay consequence clause.</strong> If Client fails to meet an obligation in 7.2 or a Prerequisite in 3.4 within <span class="placeholder">[X]</span> business days of the agreed date, Cegeka may: (a) extend the timeline day-for-day without fee reduction, and/or (b) treat the delay as a Change Control trigger if it causes idle resource cost, per Section 9.</p>
+    </div>
+    <div class="gold-callout p-5 rounded-r-lg space-y-2">
+      <div class="text-gold font-bold text-xs uppercase tracking-wide">Drafting Guidance</div>
+      <p class="text-sm text-slate leading-relaxed">The 7.4 clause is what stops "client dependency risk" from being invisible until it's a margin problem. Put a number on the grace period and state the remedy now, not when it's already happened.</p>
+      <p class="text-sm text-slate leading-relaxed"><strong>Never leave "timely manner" undefined.</strong> Any obligation phrased as "in a timely manner" or "within a reasonable time" should be replaced with a specific business-day count wherever it appears in this document (Sections 3.4, 5.1, 7.2). This single wording habit is disproportionately important — vague timing language is one of the most common sources of client-obligation disputes on fixed-price engagements.</p>
+    </div>
+  </section>
+
+  <!-- Section 8: Timeline -->
+  <section class="space-y-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-2 h-6 bg-navy rounded-sm"></div>
+      <h2 class="text-2xl font-bold text-navy">8. Timeline</h2>
+    </div>
+    <div class="clause-card overflow-x-auto">
+      <table>
+        <thead><tr><th>Milestone</th><th>Target date</th><th>Dependency</th></tr></thead>
+        <tbody>
+          <tr><td>Pre-kickoff: Engagement &amp; Resource Planning</td><td class="code-font">[date]</td><td>Prerequisites confirmed per Section 3.4 (≥5 business days prior)</td></tr>
+          <tr><td>Kick-off (M0)</td><td class="code-font">[date]</td><td>Contract execution</td></tr>
+          <tr><td>Discovery complete (M1)</td><td class="code-font">[date]</td><td>Data access per 3.4</td></tr>
+          <tr><td>Design sign-off (M2)</td><td class="code-font">[date]</td><td></td></tr>
+          <tr><td>Progress checkpoint (5.2)</td><td class="code-font">[date]</td><td></td></tr>
+          <tr><td>Pilot / Build complete (M3)</td><td class="code-font">[date]</td><td></td></tr>
+          <tr><td>Go-live / handover (M4)</td><td class="code-font">[date]</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-sm text-slate leading-relaxed">Timeline is contingent on Client obligations in Section 7.2 and Prerequisites in Section 3.4; delays attributable to Client extend the timeline accordingly per Section 7.4. Milestone labels and dates in this table are identical to those used in the Deliverables table (Section 5, Exhibit 3) and the Commercial Terms milestone table (Section 12.2) — the three should never disagree.</p>
+    <div class="gold-callout p-5 rounded-r-lg space-y-1">
+      <div class="text-gold font-bold text-xs uppercase tracking-wide">Drafting Guidance</div>
+      <p class="text-sm text-slate leading-relaxed">Timeline is placed immediately after Roles &amp; Governance and before Commercial Terms because payment milestones (Section 12.2) are date- and dependency-linked — a reviewer should see the schedule before the money that hangs off it. The pre-kickoff Engagement &amp; Resource Planning session is listed first, ahead of Kick-off itself, because it is where both parties confirm everything (roles, prerequisites, open items) is actually in place before formal delivery time starts running — skipping it is how engagements start day one already behind plan.</p>
+    </div>
+  </section>
+
+  <!-- Section 9: Change Control -->
+  <section class="space-y-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-2 h-6 bg-navy rounded-sm"></div>
+      <h2 class="text-2xl font-bold text-navy">9. Change Control</h2>
+    </div>
+    <div class="clause-card p-5 text-sm">
+      <ol class="list-decimal pl-6 space-y-1 text-slate">
+        <li>Either party may raise a Change Request (CR) using the template in Appendix E when: (a) a Section 3.3 assumption proves false, (b) new scope is requested, (c) a Section 7.2 Client obligation or Section 3.4 Prerequisite is missed beyond the grace period, (d) a Section 3.7 Dependency is not resolved in time and materially affects scope or timeline, or (e) a Success Metric definition needs to change.</li>
+        <li>Cegeka provides a CR impact assessment (scope, fee, timeline) within 5 business days.</li>
+        <li>No work on the CR begins, and no scope/fee/timeline is deemed changed, until both parties sign the CR.</li>
+        <li>Absent an approved CR, the original SOW scope, fee, and acceptance criteria remain binding on both parties.</li>
+      </ol>
+    </div>
+    <div class="gold-callout p-5 rounded-r-lg space-y-1">
+      <div class="text-gold font-bold text-xs uppercase tracking-wide">Drafting Guidance</div>
+      <p class="text-sm text-slate leading-relaxed">A fixed-fee SOW is only as strong as its change control discipline. The most common real-world failure isn't a missing clause — it's a delivery team verbally agreeing to "just one more thing" in a workshop without running it through this process. State in the kickoff deck (not just the contract) that all scope changes go through Appendix E, and name who on your side has authority to approve informal scope drift (ideally: nobody).</p>
+    </div>
+  </section>
+
+  <!-- Section 10: Escalation -->
+  <section class="space-y-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-2 h-6 bg-navy rounded-sm"></div>
+      <h2 class="text-2xl font-bold text-navy">10. Escalation</h2>
+    </div>
+    <div class="clause-card overflow-x-auto">
+      <table>
+        <thead><tr><th>Level</th><th>Trigger</th><th>Escalates to</th><th>Response SLA</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Operational issue</td><td>Project/Engagement Managers</td><td>2 business days</td></tr>
+          <tr><td>2</td><td>Unresolved at L1, or scope/commercial dispute</td><td>Sponsors named in Section 7.1/7.2</td><td>5 business days</td></tr>
+          <tr><td>3</td><td>Unresolved at L2</td><td>Account Executive / Client Exec Sponsor</td><td>per MSA</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="page-break"></div>
+
+  <!-- Section 11: Engagement Type & Commercial Model -->
+  <section id="commercial-model" class="space-y-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-2 h-6 bg-navy rounded-sm"></div>
+      <h2 class="text-2xl font-bold text-navy">11. Engagement Type &amp; Commercial Model</h2>
+    </div>
+    <div class="clause-card p-5 space-y-2 text-sm">
+      <p class="text-slate">State clearly which model applies — this single field determines which fee mechanics in Section 12 are load-bearing.</p>
+      <div class="checkbox-item"><div class="box"></div><span><strong class="text-navy">Fixed Fee</strong> — Scope, deliverables, and acceptance criteria in Sections 3, 5 and 6 are fixed; price does not vary with effort.</span></div>
+      <div class="checkbox-item"><div class="box"></div><span><strong class="text-navy">Outcome-Based</strong> — Some or all fees are contingent on achievement of the Success Metrics in Section 4; see Section 12 for the fee-at-risk structure.</span></div>
+      <div class="checkbox-item"><div class="box"></div><span><strong class="text-navy">Hybrid</strong> — Fixed fee for defined deliverables + outcome-based component (e.g., bonus/holdback tied to adoption or performance thresholds) + T&amp;M for change requests.</span></div>
+      <div class="checkbox-item"><div class="box"></div><span class="text-slate/70">Time &amp; Materials (reference only — not the default for this template)</span></div>
+    </div>
+    <div class="gold-callout p-5 rounded-r-lg space-y-1">
+      <div class="text-gold font-bold text-xs uppercase tracking-wide">Drafting Guidance</div>
+      <p class="text-sm text-slate leading-relaxed">This clause is placed immediately before Commercial Terms deliberately — it has nothing to do with the Success Metrics, deliverables, acceptance criteria, or approach/methodology defined earlier; it is purely a commercial classification that determines how Section 12 is read. Pick one honestly: the most common failure mode in this space is calling something "fixed fee" while the actual scope is written in outcome language with no measurable finish line — that's a T&amp;M engagement wearing a fixed-fee price tag. If it's genuinely outcome-based, Section 4 is not optional — it is the contract.</p>
+    </div>
+  </section>
+
+  <!-- Section 12: Commercial Terms -->
+  <section id="commercial-terms" class="space-y-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-2 h-6 bg-navy rounded-sm"></div>
+      <h2 class="text-2xl font-bold text-navy">12. Commercial Terms</h2>
+    </div>
+    <div class="clause-card p-5 text-sm"><p><strong class="text-navy">12.1 Total Fee.</strong> <span class="placeholder">[Currency and amount]</span>, structured as follows.</p></div>
+    <p class="text-xs font-semibold uppercase tracking-wider text-navy/70">Exhibit 5: Milestone Payment Structure</p>
+    <div class="clause-card overflow-x-auto">
+      <table>
+        <thead><tr><th>Milestone</th><th>Linked deliverable(s)</th><th>Target date</th><th>Amount</th><th>Trigger for invoicing</th></tr></thead>
+        <tbody>
+          <tr><td>M1</td><td>D1 — Discovery complete &amp; accepted</td><td class="code-font">[date]</td><td>X%</td><td>Upon acceptance per Section 5</td></tr>
+          <tr><td>M2</td><td>D2 — Design accepted</td><td class="code-font">[date]</td><td>X%</td><td>Upon acceptance</td></tr>
+          <tr><td>M3</td><td>D3 — Pilot meets Success Metrics</td><td class="code-font">[date]</td><td>X%</td><td>Upon metric validation</td></tr>
+          <tr><td>Holdback</td><td>D4 — outcome bonus (if Hybrid)</td><td class="code-font">[date]</td><td>X%</td><td>Upon achievement of Section 4 targets within measurement window; if not met by [date], holdback is [forfeited / paid pro-rata / converted to remediation credit — state which]</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="exhibit-source">Source: engagement-specific commercial proposal. Milestone labels and dates match Section 8 (Timeline) and Section 5 (Deliverables) exactly.</p>
+    <div class="clause-card p-5 space-y-3 text-sm">
+      <p><strong class="text-navy">12.2 Payment terms.</strong> <span class="placeholder">[Net 30 from invoice, currency, late payment terms per MSA.]</span></p>
+      <p><strong class="text-navy">12.3 Expenses.</strong> <span class="placeholder">[Travel/expenses policy, pre-approval threshold.]</span></p>
+      <p><strong class="text-navy">12.4 Third-party / pass-through costs (critical for AI engagements).</strong> Cloud compute, LLM API consumption (e.g., Azure OpenAI, Bedrock token costs), data platform licensing (e.g., Databricks DBUs, Snowflake credits), and other third-party subscription costs are:</p>
+      <div class="checkbox-item"><div class="box"></div><span>Procured and paid directly by Client under Client's own agreements/tenant, or</span></div>
+      <div class="checkbox-item"><div class="box"></div><span>Pass-through, invoiced at cost + X% handling fee, with a monthly cap of [amount] absent written pre-approval for overage.</span></div>
+      <p><strong class="text-navy">12.5 Price basis for effort-based components (if Hybrid).</strong> Rate card in Appendix D; applies only to Change Requests and any T&amp;M-billed work explicitly named in Section 3.</p>
+      <p><strong class="text-navy">12.6 Vendor co-funding / financing programs.</strong></p>
+      <div class="checkbox-item"><div class="box"></div><span>This engagement is linked to a hyperscaler/vendor co-funding or partner financing program: <span class="placeholder">[e.g., Microsoft partner funding, Databricks funding program — name it]</span>. Program-specific eligibility requirements and obligations are described below / in Appendix I.</span></div>
+      <div class="checkbox-item"><div class="box"></div><span>Not applicable — no co-funding/financing program is associated with this engagement.</span></div>
+      <p><strong class="text-navy">12.7 Invoicing details.</strong></p>
+    </div>
+    <div class="clause-card overflow-x-auto">
+      <table>
+        <tbody>
+          <tr><td class="font-semibold text-navy w-1/3">Invoice (billing) address</td><td class="placeholder">[address]</td></tr>
+          <tr><td class="font-semibold text-navy">Invoice email address</td><td class="placeholder">[email]</td></tr>
+          <tr><td class="font-semibold text-navy">PO number / reference</td><td class="placeholder">[PO-#### or "not required"]</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="risk-callout p-5 rounded-r-lg space-y-1">
+      <div class="flex items-center space-x-2 text-risk font-bold text-xs uppercase tracking-wide">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        <span>Risk: Uncapped LLM/compute pass-through</span>
+      </div>
+      <p class="text-sm text-slate leading-relaxed">Do not fold variable LLM/compute consumption into a fixed fee unless you have hard usage caps in the assumptions (Section 3.3) and a metering/alerting mechanism. Token costs for LLM-heavy solutions can vary 10x based on prompt design, user volume, and model choice — this is the fastest way to turn a fixed-fee AI SOW into a loss-making one if left ambiguous.</p>
+    </div>
+    <div class="gold-callout p-5 rounded-r-lg space-y-1">
+      <div class="text-gold font-bold text-xs uppercase tracking-wide">Drafting Guidance</div>
+      <p class="text-sm text-slate leading-relaxed">Tie invoicing milestones to the acceptance events in Section 5, not to calendar dates or effort spent. For the holdback/bonus row, always state explicitly what happens if the metric is <em>partially</em> met — "all or nothing" clauses generate disputes precisely at the moment you most need goodwill (post go-live). Missing invoicing details (12.7) are one of the most common causes of late payment that have nothing to do with the client disputing the work — collect the billing contact, invoice email, and PO reference at signature, not after the first invoice bounces.</p>
+    </div>
+  </section>
+
+  <!-- Section 13: Term, Termination & Transition -->
+  <section class="space-y-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-2 h-6 bg-navy rounded-sm"></div>
+      <h2 class="text-2xl font-bold text-navy">13. Term, Termination &amp; Transition</h2>
+    </div>
+    <div class="clause-card p-5 text-sm">
+      <ul class="list-disc pl-6 space-y-2 text-slate">
+        <li>Term: from Effective Date until final deliverable acceptance, or <span class="placeholder">[date]</span>.</li>
+        <li>Termination for convenience: <span class="placeholder">[X]</span> days' written notice; Client pays for Services performed and non-cancellable commitments (e.g., pre-purchased cloud credits, or vendor co-funding program commitments per Section 12.6) to date.</li>
+        <li>Termination for cause: per MSA.</li>
+        <li>Transition/exit assistance: <span class="placeholder">[state whether knowledge transfer / handover documentation is included, and any additional fee if requested post-termination.]</span></li>
+      </ul>
+    </div>
+    <div class="gold-callout p-5 rounded-r-lg space-y-1">
+      <div class="text-gold font-bold text-xs uppercase tracking-wide">Drafting Guidance</div>
+      <p class="text-sm text-slate leading-relaxed">Term, Termination &amp; Transition stays adjacent to Commercial Terms rather than being pushed into a back-of-document appendix — termination mechanics are fundamentally a commercial question (what's owed, what's cancellable, what it costs to exit), and a reviewer working through the money terms should hit this in the same pass.</p>
+    </div>
+  </section>
+
+  <!-- Section 14 -->
+  <section class="space-y-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-2 h-6 bg-navy rounded-sm"></div>
+      <h2 class="text-2xl font-bold text-navy">14. Intellectual Property</h2>
+    </div>
+    <div class="clause-card p-5 space-y-3 text-sm text-slate">
+      <p><strong class="text-navy">14.1 Background IP.</strong> Each party retains ownership of its pre-existing IP, including Cegeka's methodologies, frameworks, accelerators, reusable code libraries, prompt libraries, and evaluation harnesses ("Cegeka Accelerators"), brought into or used during the engagement.</p>
+      <p><strong class="text-navy">14.2 Foreground IP — Deliverables.</strong> Subject to full payment, Client owns the deliverables specifically created for Client under this SOW, excluding any Cegeka Accelerators embedded within them, for which Cegeka grants Client a perpetual, non-exclusive, royalty-free license to use as part of the deliverable.</p>
+      <p><strong class="text-navy">14.3 Client Data.</strong> Client retains all ownership of Client Data. Cegeka is granted a license to process Client Data solely for the purpose of performing the Services.</p>
+      <p><strong class="text-navy">14.4 Model artifacts.</strong> <span class="placeholder">[Specify explicitly — varies by engagement]</span> Fine-tuned model weights / prompts / embeddings created specifically for Client under this SOW [are owned by Client / are licensed to Client / remain Cegeka IP licensed for Client's use], excluding any underlying foundation model, which remains the property of its respective vendor (e.g., OpenAI, Anthropic, Meta) under that vendor's terms.</p>
+      <p><strong class="text-navy">14.5 Third-party/open-source components.</strong> Use of open-source or third-party components is subject to their respective licenses, disclosed in Appendix F.</p>
+    </div>
+    <div class="gold-callout p-5 rounded-r-lg space-y-1">
+      <div class="text-gold font-bold text-xs uppercase tracking-wide">Drafting Guidance</div>
+      <p class="text-sm text-slate leading-relaxed">Model/prompt/fine-tune ownership is the newest and most-often-skipped IP question in this category. Decide it deliberately, not by default — if you plan to reuse an evaluation harness or a fine-tuning approach across clients, it needs to sit in "Background IP / Accelerators" (14.1), explicitly excluded from what transfers to the client in 14.2/14.4.</p>
+    </div>
+  </section>
+
+  <!-- Section 15 -->
+  <section class="space-y-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-2 h-6 bg-navy rounded-sm"></div>
+      <h2 class="text-2xl font-bold text-navy">15. Data Protection, Confidentiality &amp; Security</h2>
+    </div>
+    <div class="clause-card p-5 text-sm">
+      <ul class="list-disc pl-6 space-y-2 text-slate">
+        <li>Processing of personal data is governed by the Data Processing Agreement (DPA) referenced in the MSA / Appendix G; Cegeka acts as [Processor/Sub-processor] on Client's behalf.</li>
+        <li>Client warrants it has the lawful basis to provide the data described in Section 3.5 to Cegeka for the purposes of this SOW.</li>
+        <li><strong class="text-navy">Sub-processors / third-party AI services.</strong> Where the solution uses third-party AI/LLM services (e.g., Azure OpenAI, AWS Bedrock, Anthropic API), these are disclosed in Appendix G as sub-processors. Client data sent to such services is subject to that vendor's data handling terms, disclosed in advance; Cegeka will not use Client Data to train third-party foundation models unless explicitly agreed in writing.</li>
+        <li>Confidentiality obligations per MSA apply to all information exchanged, including Client data, model outputs, and evaluation results.</li>
+        <li>Data retention/deletion: <span class="placeholder">[state post-engagement handling of Client data, test sets, logs, and any interim model artifacts.]</span></li>
+      </ul>
+    </div>
+    <div class="gold-callout p-5 rounded-r-lg space-y-1">
+      <div class="text-gold font-bold text-xs uppercase tracking-wide">Drafting Guidance</div>
+      <p class="text-sm text-slate leading-relaxed">Naming the LLM/AI sub-processors explicitly (not just "cloud infrastructure providers" generically) is increasingly expected by procurement and legal teams and by emerging AI-specific regulation. If you don't know at signature which model provider will be used, say so and commit to disclosing it before it's used, not after.</p>
+    </div>
+  </section>
+
+  <!-- Section 16 -->
+  <section class="space-y-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-2 h-6 bg-navy rounded-sm"></div>
+      <h2 class="text-2xl font-bold text-navy">16. Regulatory &amp; Responsible AI Considerations</h2>
+    </div>
+    <div class="clause-card p-5 text-sm">
+      <ul class="list-disc pl-6 space-y-2 text-slate">
+        <li>Where the solution constitutes an "AI system" under applicable regulation (e.g., EU AI Act), the parties agree the system's risk classification is <span class="placeholder">[state, or "to be jointly determined during Discovery"]</span>, and obligations flow accordingly (documentation, human oversight, transparency to end users).</li>
+        <li>Human oversight: <span class="placeholder">[state where human-in-the-loop review is required before AI-generated outputs are acted upon]</span> — this is both a risk-management clause and, often, a scope item with cost.</li>
+        <li>Bias/fairness testing: <span class="placeholder">[state if in scope, on what basis, and against what dataset — if out of scope, say so explicitly]</span>.</li>
+      </ul>
+    </div>
+    <div class="gold-callout p-5 rounded-r-lg space-y-1">
+      <div class="text-gold font-bold text-xs uppercase tracking-wide">Drafting Guidance</div>
+      <p class="text-sm text-slate leading-relaxed">Silence on responsible-AI obligations does not mean no obligation exists — it means the obligation is undefined and therefore a source of dispute later, especially as the EU AI Act's provisions phase in. Even a short paragraph stating what was/wasn't assessed protects both parties.</p>
+    </div>
+  </section>
+
+  <!-- Section 17 -->
+  <section class="space-y-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-2 h-6 bg-navy rounded-sm"></div>
+      <h2 class="text-2xl font-bold text-navy">17. Warranties, Disclaimers &amp; Liability</h2>
+    </div>
+    <div class="clause-card p-5 space-y-3 text-sm text-slate">
+      <p><strong class="text-navy">17.1 Professional services warranty.</strong> Cegeka warrants Services will be performed with reasonable skill and care consistent with good industry practice.</p>
+      <p><strong class="text-navy">17.2 AI/analytics-specific disclaimer</strong> <span class="text-risk font-semibold">(important — do not omit or generalize away)</span>. Client acknowledges that:</p>
+      <ul class="list-disc pl-6 space-y-1">
+        <li>Outputs of statistical, machine learning, or generative AI models are probabilistic and may contain errors, omissions, or "hallucinated" content; they do not constitute professional, legal, financial, or medical advice.</li>
+        <li>Cegeka does not warrant that any model or AI-based deliverable will be error-free, or that any Success Metric, once achieved during the measurement window, will remain stable indefinitely under changing data/production conditions (model drift).</li>
+        <li>Client is responsible for appropriate human review of AI-generated outputs before relying on them for business-critical or regulated decisions, commensurate with the human oversight arrangements in Section 16.</li>
+        <li>Advisory recommendations reflect Cegeka's professional judgment based on information available at the time; Client retains sole responsibility for business decisions made on that basis.</li>
+      </ul>
+      <p><strong class="text-navy">17.3 Liability cap.</strong> Per MSA, or <span class="placeholder">[state cap, e.g., fees paid under this SOW in the preceding 12 months]</span>, excluding carve-outs per MSA (gross negligence, confidentiality breach, IP infringement, data protection breach).</p>
+    </div>
+    <div class="risk-callout p-5 rounded-r-lg space-y-1">
+      <div class="flex items-center space-x-2 text-risk font-bold text-xs uppercase tracking-wide">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        <span>Drafting Guidance — this is the clause most often missing from generic templates</span>
+      </div>
+      <p class="text-sm text-slate leading-relaxed">17.2 does not reduce accountability for competent work (17.1 still applies) — it correctly allocates the residual, irreducible uncertainty of probabilistic systems, which no vendor can warrant away. Get this reviewed by legal once, then reuse it consistently rather than re-litigating it per deal.</p>
+    </div>
+  </section>
+
+  <!-- Section 18: Signatures & Contacts -->
+  <section class="space-y-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-2 h-6 bg-navy rounded-sm"></div>
+      <h2 class="text-2xl font-bold text-navy">18. Signatories &amp; Contacts</h2>
+    </div>
+    <p class="text-xs font-semibold uppercase tracking-wider text-navy/70">Exhibit 6: Signatories</p>
+    <div class="clause-card overflow-x-auto">
+      <table>
+        <thead><tr><th></th><th>Client</th><th>Cegeka</th></tr></thead>
+        <tbody>
+          <tr><td class="font-semibold text-navy">Name</td><td></td><td></td></tr>
+          <tr><td class="font-semibold text-navy">Role</td><td></td><td></td></tr>
+          <tr><td class="font-semibold text-navy">Company</td><td></td><td></td></tr>
+          <tr><td class="font-semibold text-navy">Email</td><td></td><td></td></tr>
+          <tr><td class="font-semibold text-navy">Signature</td><td></td><td></td></tr>
+          <tr><td class="font-semibold text-navy">Date</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs font-semibold uppercase tracking-wider text-navy/70">Exhibit 7: Day-to-Day &amp; Invoicing Contact Persons</p>
+    <div class="clause-card overflow-x-auto">
+      <table>
+        <thead><tr><th></th><th>Client</th><th>Cegeka</th></tr></thead>
+        <tbody>
+          <tr><td class="font-semibold text-navy">Name</td><td></td><td></td></tr>
+          <tr><td class="font-semibold text-navy">Role</td><td></td><td></td></tr>
+          <tr><td class="font-semibold text-navy">Company</td><td></td><td></td></tr>
+          <tr><td class="font-semibold text-navy">Email</td><td></td><td></td></tr>
+          <tr><td class="font-semibold text-navy">Phone</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="gold-callout p-5 rounded-r-lg space-y-1">
+      <div class="text-gold font-bold text-xs uppercase tracking-wide">Drafting Guidance</div>
+      <p class="text-sm text-slate leading-relaxed">Signatories and day-to-day contacts are usually different people and should be captured separately. Signatories are often senior and reasonably decline to share a direct phone number — don't require it. The operational/invoicing contact is who actually handles the relationship day to day and processes invoices, so capture full contact details including phone for that person on both sides. Missing invoicing contact details (also see Section 12.7) is a routine, avoidable cause of late payment.</p>
+    </div>
+  </section>
+
+  <!-- Appendices -->
+  <section class="space-y-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-2 h-6 bg-navy rounded-sm"></div>
+      <h2 class="text-2xl font-bold text-navy">Appendices</h2>
+    </div>
+    <div class="clause-card p-5 text-sm">
+      <ul class="list-disc pl-6 space-y-1 text-slate">
+        <li><strong class="text-navy">Appendix A</strong> — Systems/integration inventory</li>
+        <li><strong class="text-navy">Appendix B</strong> — Assessment dimensions / evaluation framework &amp; frozen test set definition</li>
+        <li><strong class="text-navy">Appendix C</strong> — UAT test cases</li>
+        <li><strong class="text-navy">Appendix D</strong> — Rate card (for Change Requests / T&amp;M components)</li>
+        <li><strong class="text-navy">Appendix E</strong> — Change Request template</li>
+        <li><strong class="text-navy">Appendix F</strong> — Third-party / open-source component disclosure</li>
+        <li><strong class="text-navy">Appendix G</strong> — Sub-processor list (incl. AI/LLM vendors) &amp; DPA reference</li>
+        <li><strong class="text-navy">Appendix H</strong> — RACI matrix (full version)</li>
+        <li><strong class="text-navy">Appendix I</strong> — Vendor co-funding / financing program terms (where applicable, per Section 12.6)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Pre-flight checklist -->
+  <section id="checklist" class="space-y-4">
+    <div class="flex items-center space-x-3">
+      <div class="w-2 h-6 bg-navy rounded-sm"></div>
+      <h2 class="text-2xl font-bold text-navy">Pre-Flight Checklist Before Sending an SOW in This Category</h2>
+    </div>
+    <div class="clause-card p-6 space-y-3 text-sm">
+      <div class="checkbox-item"><div class="box"></div><span>Executive Summary is a page or less, states the pre-kickoff planning session and the 5-business-day prerequisites lead time, and every claim in it is traceable to a numbered section</span></div>
+      <div class="checkbox-item"><div class="box"></div><span>Business Context/Objectives tags each objective tactical or strategic; PoC engagements include the "step one of a larger journey" narrative</span></div>
+      <div class="checkbox-item"><div class="box"></div><span>Out-of-scope sits immediately after in-scope, not at the back of the document</span></div>
+      <div class="checkbox-item"><div class="box"></div><span>Section 3.4 Prerequisites and Section 3.7 Dependencies are both present and kept conceptually distinct from Section 3.3 Assumptions</span></div>
+      <div class="checkbox-item"><div class="box"></div><span>Commercial model (Section 11) matches how scope is actually written — no "fixed fee" pricing an open-ended outcome</span></div>
+      <div class="checkbox-item"><div class="box"></div><span>Section 4 Success Metrics exist and are measurable against a frozen, pre-agreed test set/baseline (if outcome-based/hybrid)</span></div>
+      <div class="checkbox-item"><div class="box"></div><span>Every deliverable in Section 5 maps to exactly one invoicing milestone and target date, matching Section 8 and Section 12.2 exactly</span></div>
+      <div class="checkbox-item"><div class="box"></div><span>Deliverable review/acceptance windows default to 3 business days, not 10, unless a specific deliverable warrants an explicit exception</span></div>
+      <div class="checkbox-item"><div class="box"></div><span>Section 5.2 mid-engagement value checkpoint is named, with its continue/adjust/stop consequence stated</span></div>
+      <div class="checkbox-item"><div class="box"></div><span>All "timely manner" / "reasonable time" language replaced with a specific business-day count</span></div>
+      <div class="checkbox-item"><div class="box"></div><span>Section 6.1/Exhibit 4 phase list matches project type — Hypercare row included only for industrialization/production engagements, removed for PoC/advisory-only</span></div>
+      <div class="checkbox-item"><div class="box"></div><span>Section 6.5 phase kick-off briefings are included and tied to the approval/invoicing trigger for the prior phase</span></div>
+      <div class="checkbox-item"><div class="box"></div><span>Section 12.4 clarifies who pays for LLM/compute consumption, with a cap if pass-through</span></div>
+      <div class="checkbox-item"><div class="box"></div><span>Section 12.6 co-funding/financing program box completed (or explicitly marked not applicable)</span></div>
+      <div class="checkbox-item"><div class="box"></div><span>Section 12.7 invoicing details (address, email, PO reference) completed</span></div>
+      <div class="checkbox-item"><div class="box"></div><span>Section 9 Change Control is real (impact assessment + signature required), and covers Prerequisite and Dependency triggers, not just Assumptions</span></div>
+      <div class="checkbox-item"><div class="box"></div><span>Section 14.4 explicitly addresses model/prompt/fine-tune IP ownership</span></div>
+      <div class="checkbox-item"><div class="box"></div><span>Section 15 names AI sub-processors, not just "cloud providers"</span></div>
+      <div class="checkbox-item"><div class="box"></div><span>Section 17.2 AI disclaimer included, legal-reviewed once, reused consistently</span></div>
+      <div class="checkbox-item"><div class="box"></div><span>Section 18 captures signatories and day-to-day/invoicing contacts separately, with full details for the latter</span></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="bg-white border-t border-divider mt-16 py-8 text-xs text-slate/70 print-page-number">
+  <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div>
+      <p class="font-semibold text-navy">Cegeka — Data &amp; AI Practice</p>
+      <p class="mt-1 text-slate/60">This document is an internal drafting template and best-practice guidance; it is not a client-facing contract until reviewed by Legal and stripped of guidance callouts.</p>
+    </div>
+    <div class="text-right text-slate/60 text-[11px]">
+      <p>© 2026 Cegeka. All rights reserved.</p>
+      <p class="mt-0.5">Internal Use Only</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

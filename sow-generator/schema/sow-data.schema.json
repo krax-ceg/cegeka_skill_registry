@@ -1,0 +1,234 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SOW Data (Data/AI/Knowledge Services)",
+  "description": "Input JSON consumed by bin/sowgen to render the client-facing SOW PDF and, if open_items is non-empty, an Open Items Register DOCX. Any field left as an empty string or empty array is rendered as a gold placeholder in the PDF (e.g. '[Client Legal Entity Name]') rather than omitted. Never fabricate a value for a field you don't have evidence for — leave it empty and add an entry to open_items instead.",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "ref": { "type": "string", "description": "SOW reference number, e.g. SOW-1234" },
+        "version": { "type": "string", "default": "v1.0" },
+        "date": { "type": "string", "description": "ISO date, document date" }
+      }
+    },
+    "doc_control": {
+      "type": "object",
+      "properties": {
+        "client_legal_name": { "type": "string" },
+        "cegeka_entity": { "type": "string" },
+        "msa_date": { "type": "string" },
+        "effective_date": { "type": "string" },
+        "sow_owner_cegeka": { "type": "string", "description": "name, role, email" },
+        "sow_owner_client": { "type": "string", "description": "name, role, email" }
+      }
+    },
+    "exec_summary": {
+      "type": "object",
+      "properties": {
+        "narrative": { "type": "string" },
+        "what_we_deliver": { "type": "string" },
+        "how_success_measured": { "type": "string" },
+        "commercial_headline": { "type": "string" }
+      }
+    },
+    "context_scope": {
+      "type": "object",
+      "properties": {
+        "business_context": { "type": "string" },
+        "objectives": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": { "type": "string" },
+              "type": { "type": "string", "enum": ["tactical", "strategic"] }
+            }
+          }
+        },
+        "workstreams": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "workstream": { "type": "string" },
+              "in_scope": { "type": "string" },
+              "out_of_scope": { "type": "string" }
+            }
+          }
+        },
+        "assumptions": { "type": "array", "items": { "type": "string" } },
+        "prerequisites": { "type": "array", "items": { "type": "string" } },
+        "data_provided": { "type": "string" },
+        "reference_case_study_allowed": { "type": "boolean" },
+        "dependencies": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "success_metrics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "metric": { "type": "string" },
+          "definition": { "type": "string" },
+          "target": { "type": "string" },
+          "window": { "type": "string" },
+          "validated_by": { "type": "string" }
+        }
+      }
+    },
+    "deliverables": {
+      "type": "array",
+      "description": "Ordered by delivery priority. Priority and dependency ordering must be explicit — this is the most scrutinized part of the document.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string", "description": "e.g. D1" },
+          "name": { "type": "string" },
+          "priority": { "type": "string", "enum": ["must-have", "should-have", "nice-to-have"] },
+          "format": { "type": "string" },
+          "milestone": { "type": "string", "description": "e.g. M1 — must match timeline/commercial milestone ids" },
+          "target_date": { "type": "string" },
+          "acceptance_criteria": { "type": "string" },
+          "acceptance_process": { "type": "string" }
+        }
+      }
+    },
+    "acceptance": {
+      "type": "object",
+      "properties": {
+        "review_window_business_days": { "type": "integer", "default": 3 },
+        "rework_rounds_included": { "type": "string" },
+        "checkpoint_timing": { "type": "string" },
+        "checkpoint_description": { "type": "string" }
+      }
+    },
+    "approach": {
+      "type": "object",
+      "properties": {
+        "project_type": { "type": "string", "enum": ["advisory", "poc_pilot", "industrialization_rollout"], "description": "Drives whether Hypercare phase/row is included" },
+        "phases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "phase": { "type": "string" },
+              "fee_treatment": { "type": "string" },
+              "gate_decision": { "type": "string" }
+            }
+          }
+        },
+        "technical_description": { "type": "string" },
+        "governance_cadence": { "type": "string" }
+      }
+    },
+    "roles": {
+      "type": "object",
+      "properties": {
+        "cegeka_team": { "type": "string" },
+        "client_team": { "type": "string" },
+        "client_obligations": { "type": "array", "items": { "type": "string" } },
+        "delay_grace_business_days": { "type": "string" }
+      }
+    },
+    "timeline": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "milestone": { "type": "string" },
+          "target_date": { "type": "string" },
+          "dependency": { "type": "string" }
+        }
+      }
+    },
+    "commercial_model": {
+      "type": "string",
+      "enum": ["fixed_fee", "outcome_based", "hybrid", "time_and_materials"]
+    },
+    "commercial": {
+      "type": "object",
+      "properties": {
+        "total_fee": { "type": "string", "description": "currency + amount" },
+        "milestone_payments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "milestone": { "type": "string" },
+              "deliverable": { "type": "string" },
+              "target_date": { "type": "string" },
+              "amount": { "type": "string" },
+              "trigger": { "type": "string" }
+            }
+          }
+        },
+        "payment_terms": { "type": "string" },
+        "expenses_policy": { "type": "string" },
+        "pass_through_policy": { "type": "string" },
+        "cofunding_program": { "type": "string", "description": "empty = not applicable" },
+        "invoicing_address": { "type": "string" },
+        "invoicing_email": { "type": "string" },
+        "po_number": { "type": "string" }
+      }
+    },
+    "term": {
+      "type": "object",
+      "properties": {
+        "end_condition": { "type": "string" },
+        "termination_notice_days": { "type": "string" },
+        "transition_assistance": { "type": "string" }
+      }
+    },
+    "ip": {
+      "type": "object",
+      "properties": {
+        "model_artifacts_ownership": { "type": "string" }
+      }
+    },
+    "data_protection": {
+      "type": "object",
+      "properties": {
+        "processor_role": { "type": "string" },
+        "subprocessors": { "type": "array", "items": { "type": "string" } },
+        "retention_policy": { "type": "string" }
+      }
+    },
+    "regulatory": {
+      "type": "object",
+      "properties": {
+        "ai_risk_classification": { "type": "string" },
+        "human_oversight": { "type": "string" },
+        "bias_fairness_testing": { "type": "string" }
+      }
+    },
+    "liability": {
+      "type": "object",
+      "properties": {
+        "cap": { "type": "string" }
+      }
+    },
+    "contacts": {
+      "type": "object",
+      "properties": {
+        "client_day_to_day": { "type": "string", "description": "name, role, company, email, phone" },
+        "cegeka_day_to_day": { "type": "string", "description": "name, role, company, email, phone" }
+      }
+    },
+    "open_items": {
+      "type": "array",
+      "description": "Anything required to complete the SOW that could not be confirmed from source material or the user. Rendered ONLY in the separate Open Items Register DOCX, never invented into the PDF.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "section": { "type": "string", "description": "SOW section reference, e.g. '5 — Deliverables'" },
+          "question": { "type": "string" },
+          "why_it_matters": { "type": "string" },
+          "risk_if_unresolved": { "type": "string" },
+          "suggested_owner": { "type": "string", "enum": ["Client", "Cegeka", "Joint"] }
+        },
+        "required": ["section", "question"]
+      }
+    }
+  }
+}
