@@ -242,6 +242,137 @@ func (p *PDF) WriteValue(x, width float64, val string) {
 	p.Paragraph(x, width, val)
 }
 
+// WriteLead renders val as a distinct bold, slightly larger lead line (used
+// for the exec-summary vision statement), or an italic gold placeholder if
+// empty, consistent with WriteValue's placeholder convention.
+func (p *PDF) WriteLead(x, width float64, val string) {
+	if strings.TrimSpace(val) == "" {
+		p.SetFont("F3", 9.5)
+		p.SetColor(colGold)
+		p.Paragraph(x, width, "[Not yet confirmed]")
+		return
+	}
+	p.SetFont("F2", 11)
+	p.SetColor(colNavy)
+	p.Paragraph(x, width, val)
+}
+
+// styledWord is a word plus whether it should render bold.
+type styledWord struct {
+	text string
+	bold bool
+}
+
+// parseBoldWords sanitizes s and splits it on "**...**" markers into a flat
+// list of words, each tagged with whether it falls inside a bold span.
+func parseBoldWords(s string) []styledWord {
+	s = sanitize(s)
+	var words []styledWord
+	parts := strings.Split(s, "**")
+	for i, part := range parts {
+		bold := i%2 == 1
+		for _, w := range strings.Fields(part) {
+			words = append(words, styledWord{text: w, bold: bold})
+		}
+	}
+	return words
+}
+
+// ParagraphBold renders text that may contain "**bold**" spans, wrapping and
+// paginating like Paragraph. The current font is used for non-bold runs; F2
+// (Helvetica-Bold) is used for bold runs. Text has already been sanitized by
+// the time it reaches drawing (via parseBoldWords), so no double-escaping.
+func (p *PDF) ParagraphBold(x, width float64, s string) float64 {
+	words := parseBoldWords(s)
+	if len(words) == 0 {
+		return 0
+	}
+	normalFont := p.font
+	size := p.size
+	lh := p.lineHeight()
+	spaceW := textWidth(normalFont, size, " ")
+
+	var lines [][]styledWord
+	cur := []styledWord{}
+	curWidth := 0.0
+	for _, w := range words {
+		font := normalFont
+		if w.bold {
+			font = "F2"
+		}
+		ww := textWidth(font, size, w.text)
+		extra := ww
+		if len(cur) > 0 {
+			extra += spaceW
+		}
+		if curWidth+extra > width && len(cur) > 0 {
+			lines = append(lines, cur)
+			cur = []styledWord{w}
+			curWidth = ww
+		} else {
+			cur = append(cur, w)
+			curWidth += extra
+		}
+	}
+	if len(cur) > 0 {
+		lines = append(lines, cur)
+	}
+
+	total := 0.0
+	for _, line := range lines {
+		p.EnsureSpace(lh)
+		p.y -= lh
+		cx := x
+		// Draw runs of consecutive same-style words as a single Tj call with
+		// real space characters, rather than one Tj per word: word-per-Tj
+		// relies purely on positional (Tm) offsets for inter-word gaps, with
+		// no literal space glyph in the content stream, which many PDF text
+		// extractors collapse (words appear glued together on copy/paste).
+		i := 0
+		first := true
+		for i < len(line) {
+			j := i
+			bold := line[i].bold
+			var parts []string
+			for j < len(line) && line[j].bold == bold {
+				parts = append(parts, line[j].text)
+				j++
+			}
+			runText := strings.Join(parts, " ")
+			if !first {
+				runText = " " + runText
+			}
+			font := normalFont
+			if bold {
+				font = "F2"
+			}
+			p.SetFont(font, size)
+			p.text(cx, p.y, runText)
+			cx += textWidth(font, size, runText)
+			first = false
+			i = j
+		}
+		total += lh
+	}
+	p.SetFont(normalFont, size)
+	return total
+}
+
+// WriteValueBold behaves like WriteValue but renders "**bold**" spans in val
+// as bold text, for fields (like commercial_headline) whose description
+// mandates bold call-outs for pass-through/additive costs.
+func (p *PDF) WriteValueBold(x, width float64, val string) {
+	if strings.TrimSpace(val) == "" {
+		p.SetFont("F3", 9.5)
+		p.SetColor(colGold)
+		p.Paragraph(x, width, "[Not yet confirmed]")
+		return
+	}
+	p.SetFont("F1", 9.5)
+	p.SetColor(colSlate)
+	p.ParagraphBold(x, width, val)
+}
+
 func (p *PDF) WriteValueList(x, width float64, vals []string) {
 	if len(vals) == 0 {
 		p.SetFont("F3", 9.5)
@@ -277,8 +408,14 @@ func (p *PDF) SubHeading(title string) {
 }
 
 // Table draws a navy-header table. widths are proportional (sum need not be 1;
-// they're normalized against the available content width).
-func (p *PDF) Table(headers []string, widths []float64, rows [][]string) {
+// they're normalized against the available content width). An optional
+// boldCol argument marks one column index (e.g. the row's lead label) to
+// render in F2 (Helvetica-Bold) instead of the regular body font.
+func (p *PDF) Table(headers []string, widths []float64, rows [][]string, boldCol ...int) {
+	bcol := -1
+	if len(boldCol) > 0 {
+		bcol = boldCol[0]
+	}
 	contentW := pageW - 2*marginX
 	sum := 0.0
 	for _, w := range widths {
@@ -313,7 +450,11 @@ func (p *PDF) Table(headers []string, widths []float64, rows [][]string) {
 		maxLines := 1
 		for i, cell := range row {
 			w := colW[i] - 2*pad
-			lines := wrapText("F1", 8.5, cell, w)
+			cellFont := "F1"
+			if i == bcol {
+				cellFont = "F2"
+			}
+			lines := wrapText(cellFont, 8.5, cell, w)
 			if len(lines) == 0 {
 				lines = []string{""}
 			}
@@ -333,9 +474,13 @@ func (p *PDF) Table(headers []string, widths []float64, rows [][]string) {
 		y0 := p.y
 		p.StrokeRect(marginX, y0-rowH, contentW, rowH, colDivider, 0.5)
 		x := marginX
-		p.SetFont("F1", 8.5)
 		p.SetColor(colSlate)
 		for i, lines := range cellLines {
+			cellFont := "F1"
+			if i == bcol {
+				cellFont = "F2"
+			}
+			p.SetFont(cellFont, 8.5)
 			ly := y0 - pad - 7
 			for _, ln := range lines {
 				p.text(x+pad, ly, ln)

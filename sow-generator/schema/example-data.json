@@ -9,10 +9,11 @@
     "sow_owner_client": ""
   },
   "exec_summary": {
+    "vision_statement": "A finance close process Northwind can trust to run on time every month, without a manual invoice-matching backlog.",
     "narrative": "Northwind's invoice-matching process is largely manual, creating a backlog during peak season. Cegeka will deliver an AI-assisted matching workflow validated against a defined test set, on a phased fixed-fee basis.",
     "what_we_deliver": "An AI-assisted invoice matching pilot integrated with the existing ERP.",
     "how_success_measured": "Matching precision on a frozen test set, and manual-effort reduction.",
-    "commercial_headline": "Fixed fee per phase, EUR 180,000 total across Discovery, Design, and Pilot."
+    "commercial_headline": "Fixed fee per phase, EUR 180,000 total across Discovery, Design, and Pilot **+ pass-through Azure OpenAI costs**."
   },
   "context_scope": {
     "business_context": "Northwind's finance shared-service centre processes 40,000 invoices/month; roughly 30% require manual matching against purchase orders, causing month-end close delays.",
@@ -35,14 +36,13 @@
       "Confirmed availability of the named finance SME."
     ],
     "data_provided": "Historical invoice and PO records (24 months), exported monthly as CSV from the SAP and Dynamics instances.",
-    "reference_case_study_allowed": true,
     "dependencies": [
       "Northwind's concurrent ERP consolidation project proceeding on its stated schedule."
     ]
   },
   "success_metrics": [
-    { "metric": "Matching precision", "definition": "TP / (TP+FP) on the frozen 500-invoice test set in Appendix B", "target": ">=0.85", "window": "30 days post pilot go-live", "validated_by": "Joint" },
-    { "metric": "Manual effort reduction", "definition": "Baseline vs. post-pilot minutes/invoice on matched subset", "target": "-40%", "window": "60 days post go-live", "validated_by": "Client Finance Ops" }
+    { "metric": "Matching precision", "definition": "TP / (TP+FP) on the frozen 500-invoice test set in Appendix B", "target": ">=0.85", "window": "30 days post pilot go-live", "validated_by": "Joint", "consumed_by": "Finance Ops reviews the weekly precision dashboard to decide whether to raise the auto-post confidence threshold." },
+    { "metric": "Manual effort reduction", "definition": "Baseline vs. post-pilot minutes/invoice on matched subset", "target": "-40%", "window": "60 days post go-live", "validated_by": "Client Finance Ops", "consumed_by": "Shared-service centre lead uses the monthly effort report to reallocate reviewer headcount for peak season." }
   ],
   "deliverables": [
     { "id": "D1", "name": "Data & AI Readiness Assessment report", "priority": "must-have", "format": "PDF", "milestone": "M1", "target_date": "2026-10-24", "acceptance_criteria": "Covers agreed dimensions in Appendix B; presented to steering committee", "acceptance_process": "Client has 3 business days to review; deemed accepted if no written objection" },
@@ -83,15 +83,18 @@
   "commercial": {
     "total_fee": "EUR 180,000",
     "milestone_payments": [
-      { "milestone": "M1", "deliverable": "D1", "target_date": "2026-10-24", "amount": "30%", "trigger": "Upon acceptance" },
-      { "milestone": "M2", "deliverable": "D2, D3", "target_date": "2026-12-19", "amount": "70%", "trigger": "Upon metric validation" }
+      { "milestone": "M1", "deliverable": "D1", "target_date": "2026-10-24", "amount": "30%", "trigger": "Upon acceptance", "funding_source": "Client" },
+      { "milestone": "M2", "deliverable": "D2, D3", "target_date": "2026-12-19", "amount": "70%", "trigger": "Upon metric validation", "funding_source": "Client" },
+      { "milestone": "M-Funding", "deliverable": "Final engagement sign-off", "target_date": "2026-12-19", "amount": "EUR 20,000", "trigger": "Final engagement sign-off, settled directly with the funding program administrator (not blended into the customer-paid milestones above)", "funding_source": "Partner-Led Funding" }
     ],
-    "payment_terms": "Net 30 from invoice date, EUR.",
+    "payment_terms": "Net 30 from invoice date, EUR. Client-paid milestones above sum to 100% of the customer-payable (net) fee; the Partner-Led Funding milestone is settled separately and is not part of the customer-payable amount.",
     "expenses_policy": "Pre-approved travel only, invoiced at cost.",
     "pass_through_policy": "Azure OpenAI consumption is pass-through, invoiced at cost + 5% handling fee, capped at EUR 1,500/month absent written pre-approval.",
-    "cofunding_program": "",
+    "cofunding_program": "A portion of this engagement is co-funded via Microsoft ECIF, referred to throughout this SOW as Partner-Led Funding.",
     "invoicing_address": "Northwind Retail Group B.V., Finance Dept, Amsterdam",
     "invoicing_email": "ap@northwindretail.example",
+    "invoicing_contact_name": "Mila Jansen, Accounts Payable Lead",
+    "invoicing_contact_phone": "+31 20 555 0177",
     "po_number": ""
   },
   "term": {
@@ -101,6 +104,11 @@
   },
   "ip": {
     "model_artifacts_ownership": "The fine-tuned matching model and prompts created specifically for Client are licensed to Client for use with the deliverable; the underlying foundation model remains the property of its vendor."
+  },
+  "escalation": {
+    "owner_role": "Project/Engagement Manager",
+    "response_sla_business_days": "5",
+    "sla_reference": "Per MSA"
   },
   "data_protection": {
     "processor_role": "Cegeka acts as Processor on Client's behalf under the DPA referenced in the MSA.",

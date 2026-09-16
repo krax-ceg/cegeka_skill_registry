@@ -61,6 +61,8 @@ func BuildSOWPDF(d *SOWData) []byte {
 
 	// ---- 1. Executive Summary ----
 	p.SectionHeading("1. Executive Summary")
+	p.WriteLead(marginX, contentW, d.ExecSummary.VisionStatement)
+	p.Gap(6)
 	p.SetFont("F1", 9.5)
 	p.SetColor(colSlate)
 	p.WriteValue(marginX, contentW, d.ExecSummary.Narrative)
@@ -68,11 +70,12 @@ func BuildSOWPDF(d *SOWData) []byte {
 	for _, kv := range [][2]string{
 		{"What we will deliver", d.ExecSummary.WhatWeDeliver},
 		{"How success is measured", d.ExecSummary.HowSuccessMeasured},
-		{"Commercial headline", d.ExecSummary.CommercialHeadline},
 	} {
 		p.SubHeading(kv[0])
 		p.WriteValue(marginX, contentW, kv[1])
 	}
+	p.SubHeading("Commercial headline")
+	p.WriteValueBold(marginX, contentW, d.ExecSummary.CommercialHeadline)
 
 	// ---- 2. Document Control ----
 	p.SectionHeading("2. Document Control")
@@ -113,7 +116,7 @@ func BuildSOWPDF(d *SOWData) []byte {
 		for i, w := range d.ContextScope.Workstreams {
 			rows[i] = []string{w.Workstream, w.InScope, w.OutOfScope}
 		}
-		p.Table([]string{"Workstream", "In-scope activities", "Out of scope"}, []float64{1, 1.6, 1.6}, rows)
+		p.Table([]string{"Workstream", "In-scope activities", "Out of scope"}, []float64{1, 1.6, 1.6}, rows, 0)
 	}
 
 	p.SubHeading("3.3 Assumptions")
@@ -125,13 +128,6 @@ func BuildSOWPDF(d *SOWData) []byte {
 	p.SubHeading("3.5 Data provided by Client")
 	p.WriteValue(marginX, contentW, d.ContextScope.DataProvided)
 
-	p.SubHeading("3.6 Reference / case-study use")
-	if d.ContextScope.ReferenceCaseStudyAllowed {
-		p.WriteValue(marginX, contentW, "Permitted, subject to Client's prior written approval on each occasion.")
-	} else {
-		p.WriteValue(marginX, contentW, "Not permitted unless separately agreed in writing.")
-	}
-
 	p.SubHeading("3.7 Dependencies")
 	p.WriteValueList(marginX, contentW, d.ContextScope.Dependencies)
 
@@ -142,10 +138,10 @@ func BuildSOWPDF(d *SOWData) []byte {
 	} else {
 		rows := make([][]string, len(d.SuccessMetrics))
 		for i, m := range d.SuccessMetrics {
-			rows[i] = []string{m.Metric, m.Definition, m.Target, m.Window, m.ValidatedBy}
+			rows[i] = []string{m.Metric, m.Definition, m.Target, m.Window, m.ValidatedBy, m.ConsumedBy}
 		}
-		p.Table([]string{"Metric", "Definition & method", "Target", "Window", "Validated by"},
-			[]float64{1, 1.8, 0.7, 0.9, 0.9}, rows)
+		p.Table([]string{"Metric", "Definition & method", "Target", "Window", "Validated by", "Consumed by"},
+			[]float64{0.9, 1.5, 0.6, 0.7, 0.8, 1.1}, rows)
 	}
 
 	// ---- 5. Deliverables ----
@@ -231,11 +227,18 @@ func BuildSOWPDF(d *SOWData) []byte {
 		"Either party may raise a Change Request when scope, an assumption, a prerequisite, or a dependency changes materially, or a Success Metric definition needs to change. Cegeka provides an impact assessment (scope, fee, timeline) within 5 business days. No work begins, and no scope/fee/timeline is deemed changed, until both parties sign the Change Request. Absent an approved Change Request, the original SOW scope, fee, and acceptance criteria remain binding.")
 
 	// ---- 10. Escalation ----
+	// Distinct from Section 8 (delivery Timeline) and Section 12 (Commercial /
+	// milestone payments) - this is the issue-escalation path during delivery,
+	// not a schedule or a payment structure. Kept structurally separate per
+	// explicit client feedback.
 	p.SectionHeading("10. Escalation")
+	ownerRole := firstNonEmpty(d.Escalation.OwnerRole, "Project/Engagement Manager")
+	responseSLA := firstNonEmpty(d.Escalation.ResponseSLABusinessDays, "5")
+	slaRef := firstNonEmpty(d.Escalation.SLAReference, "Per MSA")
 	p.Table([]string{"Level", "Trigger", "Escalates to", "Response SLA"}, []float64{0.4, 1.2, 1.2, 0.8}, [][]string{
-		{"1", "Operational issue", "Project/Engagement Managers", "2 business days"},
-		{"2", "Unresolved at L1, or scope/commercial dispute", "Sponsors named in Section 7", "5 business days"},
-		{"3", "Unresolved at L2", "Account Executive / Client Exec Sponsor", "per MSA"},
+		{"1", "Operational issue", ownerRole, "2 business days"},
+		{"2", "Unresolved at L1, or scope/commercial dispute", "Sponsors named in Section 7", responseSLA + " business days"},
+		{"3", "Unresolved at L2", "Account Executive / Client Exec Sponsor", slaRef},
 	})
 
 	// ---- 11. Commercial Model ----
@@ -260,9 +263,9 @@ func BuildSOWPDF(d *SOWData) []byte {
 		p.SubHeading("Milestone Payment Structure")
 		rows := make([][]string, len(d.Commercial.MilestonePayments))
 		for i, m := range d.Commercial.MilestonePayments {
-			rows[i] = []string{m.Milestone, m.Deliverable, m.TargetDate, m.Amount, m.Trigger}
+			rows[i] = []string{m.Milestone, m.Deliverable, m.TargetDate, m.Amount, m.Trigger, firstNonEmpty(m.FundingSource, "Client")}
 		}
-		p.Table([]string{"Milestone", "Deliverable(s)", "Date", "Amount", "Trigger"}, []float64{0.6, 1.3, 0.6, 0.5, 1.3}, rows)
+		p.Table([]string{"Milestone", "Deliverable(s)", "Date", "Amount", "Trigger", "Funding source"}, []float64{0.55, 1.2, 0.55, 0.45, 1.2, 0.65}, rows)
 	}
 	for _, kv := range [][2]string{
 		{"12.2 Payment terms", d.Commercial.PaymentTerms},
@@ -284,6 +287,8 @@ func BuildSOWPDF(d *SOWData) []byte {
 	p.Table([]string{"Field", "Value"}, []float64{1, 2.5}, [][]string{
 		{"Invoice (billing) address", d.Commercial.InvoicingAddress},
 		{"Invoice email address", d.Commercial.InvoicingEmail},
+		{"Invoicing contact name", d.Commercial.InvoicingContactName},
+		{"Invoicing contact phone", d.Commercial.InvoicingContactPhone},
 		{"PO number / reference", d.Commercial.PoNumber},
 	})
 

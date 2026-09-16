@@ -19,6 +19,7 @@ type SOWData struct {
 	} `json:"doc_control"`
 
 	ExecSummary struct {
+		VisionStatement    string `json:"vision_statement"`
 		Narrative          string `json:"narrative"`
 		WhatWeDeliver      string `json:"what_we_deliver"`
 		HowSuccessMeasured string `json:"how_success_measured"`
@@ -36,11 +37,10 @@ type SOWData struct {
 			InScope    string `json:"in_scope"`
 			OutOfScope string `json:"out_of_scope"`
 		} `json:"workstreams"`
-		Assumptions               []string `json:"assumptions"`
-		Prerequisites             []string `json:"prerequisites"`
-		DataProvided              string   `json:"data_provided"`
-		ReferenceCaseStudyAllowed bool     `json:"reference_case_study_allowed"`
-		Dependencies              []string `json:"dependencies"`
+		Assumptions   []string `json:"assumptions"`
+		Prerequisites []string `json:"prerequisites"`
+		DataProvided  string   `json:"data_provided"`
+		Dependencies  []string `json:"dependencies"`
 	} `json:"context_scope"`
 
 	SuccessMetrics []struct {
@@ -49,6 +49,7 @@ type SOWData struct {
 		Target      string `json:"target"`
 		Window      string `json:"window"`
 		ValidatedBy string `json:"validated_by"`
+		ConsumedBy  string `json:"consumed_by"`
 	} `json:"success_metrics"`
 
 	Deliverables []struct {
@@ -98,19 +99,22 @@ type SOWData struct {
 	Commercial struct {
 		TotalFee          string `json:"total_fee"`
 		MilestonePayments []struct {
-			Milestone   string `json:"milestone"`
-			Deliverable string `json:"deliverable"`
-			TargetDate  string `json:"target_date"`
-			Amount      string `json:"amount"`
-			Trigger     string `json:"trigger"`
+			Milestone     string `json:"milestone"`
+			Deliverable   string `json:"deliverable"`
+			TargetDate    string `json:"target_date"`
+			Amount        string `json:"amount"`
+			Trigger       string `json:"trigger"`
+			FundingSource string `json:"funding_source"`
 		} `json:"milestone_payments"`
-		PaymentTerms      string `json:"payment_terms"`
-		ExpensesPolicy    string `json:"expenses_policy"`
-		PassThroughPolicy string `json:"pass_through_policy"`
-		CofundingProgram  string `json:"cofunding_program"`
-		InvoicingAddress  string `json:"invoicing_address"`
-		InvoicingEmail    string `json:"invoicing_email"`
-		PoNumber          string `json:"po_number"`
+		PaymentTerms          string `json:"payment_terms"`
+		ExpensesPolicy        string `json:"expenses_policy"`
+		PassThroughPolicy     string `json:"pass_through_policy"`
+		CofundingProgram      string `json:"cofunding_program"`
+		InvoicingAddress      string `json:"invoicing_address"`
+		InvoicingEmail        string `json:"invoicing_email"`
+		InvoicingContactName  string `json:"invoicing_contact_name"`
+		InvoicingContactPhone string `json:"invoicing_contact_phone"`
+		PoNumber              string `json:"po_number"`
 	} `json:"commercial"`
 
 	Term struct {
@@ -122,6 +126,12 @@ type SOWData struct {
 	IP struct {
 		ModelArtifactsOwnership string `json:"model_artifacts_ownership"`
 	} `json:"ip"`
+
+	Escalation struct {
+		OwnerRole               string `json:"owner_role"`
+		ResponseSLABusinessDays string `json:"response_sla_business_days"`
+		SLAReference            string `json:"sla_reference"`
+	} `json:"escalation"`
 
 	DataProtection struct {
 		ProcessorRole   string   `json:"processor_role"`

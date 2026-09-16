@@ -25,11 +25,13 @@
     },
     "exec_summary": {
       "type": "object",
+      "description": "Client review feedback (Sep 2026): lead with the client's own vision, not the technology. Structure is: (1) vision_statement, (2) narrative (the current-state problem that creates the gap to that vision), (3) what_we_deliver framed as the proof/path toward closing that gap — not an architecture pitch.",
       "properties": {
-        "narrative": { "type": "string" },
+        "vision_statement": { "type": "string", "description": "The client's own stated one-line vision/end-state, in their language where possible (e.g. 'a single source of truth across five countries they can trust'). Put this first — don't open the exec summary with technology or scope." },
+        "narrative": { "type": "string", "description": "The current-state problem/pain that creates the gap between today and vision_statement." },
         "what_we_deliver": { "type": "string" },
         "how_success_measured": { "type": "string" },
-        "commercial_headline": { "type": "string" }
+        "commercial_headline": { "type": "string", "description": "If any part of the fee is a pass-through/reimbursed cost, bold it and mark it as an addition (e.g. 'EUR 150,000 fixed fee **+ pass-through Azure costs**') — client feedback was explicit that add-on costs must be impossible to miss at a glance." }
       }
     },
     "context_scope": {
@@ -48,10 +50,11 @@
         },
         "workstreams": {
           "type": "array",
+          "description": "in_scope/out_of_scope text should state WHY something is (or isn't) in scope, not just restate WHAT — e.g. not 'ERP integration is out of scope' but 'ERP integration is out of scope because this phase validates the single-source path first'.",
           "items": {
             "type": "object",
             "properties": {
-              "workstream": { "type": "string" },
+              "workstream": { "type": "string", "description": "Rendered bold as the row's lead label — keep it a short noun phrase, not a sentence." },
               "in_scope": { "type": "string" },
               "out_of_scope": { "type": "string" }
             }
@@ -60,26 +63,27 @@
         "assumptions": { "type": "array", "items": { "type": "string" } },
         "prerequisites": { "type": "array", "items": { "type": "string" } },
         "data_provided": { "type": "string" },
-        "reference_case_study_allowed": { "type": "boolean" },
         "dependencies": { "type": "array", "items": { "type": "string" } }
       }
     },
     "success_metrics": {
       "type": "array",
+      "description": "A metric without a quantifiable target is a gap, not a placeholder to leave vague — if the client hasn't given a number yet, raise it in Step 3 or route it to open_items rather than shipping an empty target.",
       "items": {
         "type": "object",
         "properties": {
           "metric": { "type": "string" },
           "definition": { "type": "string" },
-          "target": { "type": "string" },
+          "target": { "type": "string", "description": "Must be an actual quantifiable number/threshold once confirmed — never leave this vague long-term." },
           "window": { "type": "string" },
-          "validated_by": { "type": "string" }
+          "validated_by": { "type": "string" },
+          "consumed_by": { "type": "string", "description": "Who acts on this metric, through what workflow, how often, and why it changes their behavior — e.g. 'Customer Success reviews weekly in the at-risk worklist to trigger proactive outreach'. Shows the client this isn't just a number for a slide." }
         }
       }
     },
     "deliverables": {
       "type": "array",
-      "description": "Ordered by delivery priority. Priority and dependency ordering must be explicit — this is the most scrutinized part of the document.",
+      "description": "Ordered by delivery priority. Priority and dependency ordering must be explicit — this is the most scrutinized part of the document. A report/dashboard-type deliverable defaults to should-have or nice-to-have, not must-have — the underlying data/platform work behind it is usually the real must-have, unless the client explicitly insists on committing to the report itself. For engagements meant to build a business case, consider whether a dedicated 'Business Case / Value Quantification' deliverable belongs on this list.",
       "items": {
         "type": "object",
         "properties": {
@@ -152,6 +156,7 @@
         "total_fee": { "type": "string", "description": "currency + amount" },
         "milestone_payments": {
           "type": "array",
+          "description": "If part of the fee is covered by a co-funding program (see cofunding_program), do NOT blend that amount into the customer-paid percentages. The client-paid milestones should sum to 100% of the customer-payable (net) amount; the funding-program amount gets its own separate milestone line (funding_source != 'Client'), typically triggered on final engagement sign-off. Keep this table numerically consistent with the payment_terms narrative below — mismatches between the two are a common signature-review flag.",
           "items": {
             "type": "object",
             "properties": {
@@ -159,16 +164,19 @@
               "deliverable": { "type": "string" },
               "target_date": { "type": "string" },
               "amount": { "type": "string" },
-              "trigger": { "type": "string" }
+              "trigger": { "type": "string" },
+              "funding_source": { "type": "string", "enum": ["Client", "Partner-Led Funding", "Joint"], "default": "Client", "description": "Use 'Partner-Led Funding' (not a vendor-specific acronym) for any milestone settled through a vendor co-funding program." }
             }
           }
         },
         "payment_terms": { "type": "string" },
-        "expenses_policy": { "type": "string" },
-        "pass_through_policy": { "type": "string" },
-        "cofunding_program": { "type": "string", "description": "empty = not applicable" },
+        "expenses_policy": { "type": "string", "description": "State explicitly, don't leave implicit — e.g. if delivery is fully remote, say so ('No travel expenses apply; delivery is remote from Cegeka offices unless otherwise agreed') rather than leaving this blank when the answer is actually known." },
+        "pass_through_policy": { "type": "string", "description": "Pass-through/third-party costs (e.g. cloud consumption) are billed separately from the fixed-fee/milestone schedule and are not subject to payment_terms — state that explicitly so it reads as already handled, not overlooked." },
+        "cofunding_program": { "type": "string", "description": "empty = not applicable. Use the standard term 'Partner-Led Funding' consistently throughout the document; name the specific vendor program (e.g. Microsoft ECIF) once for clarity, then refer back to 'Partner-Led Funding' rather than switching acronyms." },
         "invoicing_address": { "type": "string" },
         "invoicing_email": { "type": "string" },
+        "invoicing_contact_name": { "type": "string", "description": "Named invoicing/AP contact — client feedback: an address and PO number alone aren't enough, add a named contact." },
+        "invoicing_contact_phone": { "type": "string", "description": "Optional." },
         "po_number": { "type": "string" }
       }
     },
@@ -188,10 +196,20 @@
     },
     "data_protection": {
       "type": "object",
+      "description": "Don't default to 'not applicable / no GDPR data' — most SOWs name at least a client contact (name, email, phone), which is itself personal data. Source standard clause text from Legal/the MSA rather than leaving this section blank or inventing legal language.",
       "properties": {
         "processor_role": { "type": "string" },
         "subprocessors": { "type": "array", "items": { "type": "string" } },
         "retention_policy": { "type": "string" }
+      }
+    },
+    "escalation": {
+      "type": "object",
+      "description": "Distinct from the delivery Timeline and from commercial.milestone_payments — this is the issue-escalation path during delivery, not a delivery or payment schedule. Keep the three concepts visually and structurally separate in the rendered SOW.",
+      "properties": {
+        "owner_role": { "type": "string", "default": "Project/Engagement Manager", "description": "The named escalation owner role on the Cegeka side." },
+        "response_sla_business_days": { "type": "string", "default": "5", "description": "Default response SLA in business days, per the MSA, unless a specific engagement needs a different figure." },
+        "sla_reference": { "type": "string", "default": "Per MSA", "description": "Where the authoritative SLA terms live if this SOW doesn't override them." }
       }
     },
     "regulatory": {

@@ -62,7 +62,42 @@ from what you can actually ground in the source material. Rules:
   dashboard") with no way to test acceptance, that is a gap — surface it in Step 3, don't
   paper over it with generic acceptance language.
 - If commercial model is outcome-based or hybrid, success metrics in Section 4 are not
-  optional — if they're missing, that's a Step 3 question, not a skippable section.
+  optional — if they're missing, that's a Step 3 question, not a skippable section. A
+  metric with no quantifiable target is a gap, not something to leave vague — chase a
+  number in Step 3 or route it to open_items. Where possible, also state who consumes
+  the metric, through what workflow, and why it changes their behavior (`consumed_by`) —
+  a number nobody acts on doesn't make the business case.
+- Lead `exec_summary` with the client's own **vision statement** (their stated end-state,
+  in their language), then the current-state problem that creates the gap to it, then
+  what's delivered as the path across that gap. Don't open with architecture or
+  technology — that reads as a technical brief that happens to mention business value,
+  not a business case that happens to be delivered on the technology.
+- `workstreams[].in_scope`/`out_of_scope` should say **why**, not just restate what —
+  e.g. not "ERP integration is out of scope" but "...because this phase validates the
+  single-source path first."
+- A report/dashboard-style deliverable defaults to `should-have`/`nice-to-have`, not
+  `must-have` — the underlying data/platform work behind it is usually the real
+  must-have. If the engagement is meant to build a business case for further investment,
+  consider whether a dedicated "Business Case / Value Quantification" deliverable
+  belongs on the list.
+- Any part of the fee that's a pass-through/reimbursed cost (e.g. cloud consumption)
+  must read as clearly additive in `exec_summary.commercial_headline` — bold it and mark
+  it as an addition, not folded silently into the headline number.
+- If part of the fee is covered by a vendor co-funding program, don't blend the funded
+  amount into the customer-paid milestone percentages — the customer-paid milestones
+  should sum to 100% of the customer-payable (net) amount, and the funded amount gets
+  its **own separate milestone line** (`funding_source` != "Client"), typically triggered
+  on final engagement sign-off. Use the standard term **"Partner-Led Funding"** throughout
+  once you've named the specific vendor program (e.g. Microsoft ECIF) once for clarity —
+  don't switch between acronyms and the generic term inconsistently.
+- Never default `data_protection` to "not applicable / no GDPR data" — most SOWs name at
+  least one client contact (name, email, phone), which is itself personal data. Source
+  standard clause text from Legal/the MSA rather than leaving the section blank or
+  inventing legal language.
+- `escalation` (owner role, response SLA, SLA reference) is a separate concept from the
+  delivery `timeline` and from `commercial.milestone_payments` — keep the three visually
+  and structurally distinct in the rendered SOW rather than conflating them under one
+  heading. Default response SLA is 5 business days unless the engagement needs otherwise.
 - The `signatories`/signature block is deliberately **not** a schema field — the renderer
   always leaves it blank so the document remains signable. Never try to fill it in.
 
