@@ -1,18 +1,25 @@
 # Cegeka Skill Registry
 
-Version-controlled registry of Claude Code skills used internally at Cegeka.
+Version-controlled registry of autonomous AI agent skills used internally at Cegeka.
 
-## Skills
+## Skills Catalog
 
-- **sow-generator** — Generates a client-facing Statement of Work PDF (Data, AI & Knowledge Services)
-  from call transcripts, notes, or direct answers, plus a separate Open Items Register DOCX for anything
-  unresolved. See `sow-generator/SKILL.md` for full usage details.
+| Skill | Directory | Description |
+|---|---|---|
+| **web-search** | `web-search/` | Programmatic web search via DuckDuckGo and Google News RSS; discovers financial statements, IR decks, 10-Ks, and downloads source PDFs with complete canonical URLs. |
+| **web-crawl** | `web-crawl/` | Deep domain crawler; maps corporate websites, extracts operational contacts (emails, phones), and archives linked documents. |
+| **kyb-verification** | `kyb-verification/` | Swedish & European corporate due diligence: Allabolag registry verification, EU VIES VAT validation, OpenSanctions screening, adverse media investigation, and audited financial report archiving. |
+| **okf** | `okf/` | Open Knowledge Format (OKF 0.2) concept authoring, schema validation, and knowledge bundle compilation. |
+| **sow-generator** | `sow-generator/` | Generates client-facing Statement of Work PDF (Data, AI & Knowledge Services) from call transcripts and direct inputs. |
 
-## Local install
+## Installation & Agent Usage
 
-The live copy Claude Code loads from is `~/.claude/skills/<skill-name>`, symlinked into this repo so
-edits to either location stay in sync:
+Skills can be loaded by AI agents (Goose, Claude Code, Antigravity, or `agent-service`).
 
-```
-ln -s "$(pwd)/sow-generator" ~/.claude/skills/sow-generator
+To install or symlink for local agent discovery:
+```bash
+mkdir -p ~/.agents/skills
+for skill in web-search web-crawl kyb-verification okf sow-generator; do
+  ln -sfn "$(pwd)/$skill" ~/.agents/skills/"$skill"
+done
 ```
