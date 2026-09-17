@@ -48,8 +48,9 @@ from what you can actually ground in the source material. Rules:
 
 - **Never invent** a client name, legal entity, fee amount, date, percentage, named
   individual, or metric target that isn't stated or clearly implied in the source. If
-  it's not there, leave the field as an empty string/array — the renderer will show a
-  gold `[Not yet confirmed]`-style placeholder, which is correct and intentional.
+  it's not there, leave the field as an empty string/array — the renderer will show an
+  italic "Not yet confirmed" placeholder (no square brackets), which is correct and
+  intentional.
 - Distinguish (per the template's own drafting guidance) **assumptions** (things priced
   on the belief they're true), **prerequisites** (dated pre-kickoff readiness gate), and
   **dependencies** (external factors neither party controls) — don't collapse these into
@@ -130,8 +131,8 @@ asking and move it to Step 4 instead of re-asking.
 ## Step 4 — Route unresolved items to the Open Items Register
 
 Anything still unknown after Step 3 goes into the JSON's `open_items` array — not into
-the SOW body as an invented value, and not as a gold placeholder standing in for
-something that should have been chased down. For each open item state:
+the SOW body as an invented value, and not as a placeholder standing in for something
+that should have been chased down. For each open item state:
 - `section` — which SOW section it affects,
 - `question` — precisely what's needed,
 - `why_it_matters` — why this specific engagement needs it decided,
