@@ -34,18 +34,21 @@ func BuildSOWPDF(d *SOWData) []byte {
 	contentW := pageW - 2*marginX
 
 	// ---- Cover ----
+	logoW, logoH := p.logoSize(48)
+	p.DrawLogo(marginX, pageH-100, logoW, logoH)
 	p.y = pageH - 140
-	p.SetFont("F4", 24)
+	p.SetFont(fontHeading, 24)
 	p.SetColor(colNavy)
 	p.Paragraph(marginX, contentW, "Statement of Work")
-	p.SetFont("F4", 16)
+	p.SetFont(fontHeading, 16)
+	p.SetColor(colBrand)
 	p.Paragraph(marginX, contentW, "Data, AI & Knowledge Services")
 	p.Gap(20)
-	p.HLine(marginX, pageW-marginX, p.y, colGold, 1.5)
+	p.HLine(marginX, pageW-marginX, p.y, colCyan, 1.5)
 	p.Gap(20)
 
 	coverRow := func(label, val string) {
-		p.SetFont("F2", 10)
+		p.SetFont(fontBodyBold, 10)
 		p.SetColor(colNavy)
 		p.Paragraph(marginX, contentW, label+":")
 		p.WriteValue(marginX+14, contentW-14, val)
@@ -63,7 +66,7 @@ func BuildSOWPDF(d *SOWData) []byte {
 	p.SectionHeading("1. Executive Summary")
 	p.WriteLead(marginX, contentW, d.ExecSummary.VisionStatement)
 	p.Gap(6)
-	p.SetFont("F1", 9.5)
+	p.SetFont(fontBody, 9.5)
 	p.SetColor(colSlate)
 	p.WriteValue(marginX, contentW, d.ExecSummary.Narrative)
 	p.Gap(6)
@@ -101,9 +104,9 @@ func BuildSOWPDF(d *SOWData) []byte {
 	} else {
 		items := make([]string, len(d.ContextScope.Objectives))
 		for i, o := range d.ContextScope.Objectives {
-			tag := "[Tactical]"
+			tag := "Tactical:"
 			if strings.EqualFold(o.Type, "strategic") {
-				tag = "[Strategic]"
+				tag = "Strategic:"
 			}
 			items[i] = tag + " " + o.Text
 		}
@@ -153,7 +156,7 @@ func BuildSOWPDF(d *SOWData) []byte {
 		for i, dl := range d.Deliverables {
 			pr := dl.Priority
 			if pr == "" {
-				pr = "[unset]"
+				pr = "Not set"
 			}
 			rows[i] = []string{dl.ID, dl.Name, pr, dl.Format, dl.Milestone, dl.TargetDate, dl.AcceptanceCriteria, dl.AcceptanceProcess}
 		}
@@ -221,7 +224,7 @@ func BuildSOWPDF(d *SOWData) []byte {
 
 	// ---- 9. Change Control ----
 	p.SectionHeading("9. Change Control")
-	p.SetFont("F1", 9.5)
+	p.SetFont(fontBody, 9.5)
 	p.SetColor(colSlate)
 	p.Paragraph(marginX, contentW,
 		"Either party may raise a Change Request when scope, an assumption, a prerequisite, or a dependency changes materially, or a Success Metric definition needs to change. Cegeka provides an impact assessment (scope, fee, timeline) within 5 business days. No work begins, and no scope/fee/timeline is deemed changed, until both parties sign the Change Request. Absent an approved Change Request, the original SOW scope, fee, and acceptance criteria remain binding.")
@@ -246,13 +249,13 @@ func BuildSOWPDF(d *SOWData) []byte {
 	models := []string{"fixed_fee", "outcome_based", "hybrid", "time_and_materials"}
 	labels := []string{"Fixed Fee", "Outcome-Based", "Hybrid", "Time & Materials"}
 	for i, m := range models {
-		mark := "[ ]"
+		mark := "○" // ○
 		if d.CommercialModel == m {
-			mark = "[X]"
+			mark = "●" // ●
 		}
-		p.SetFont("F1", 9.5)
+		p.SetFont(fontBody, 9.5)
 		p.SetColor(colSlate)
-		p.Paragraph(marginX, contentW, mark+" "+labels[i])
+		p.Paragraph(marginX, contentW, mark+"  "+labels[i])
 	}
 
 	// ---- 12. Commercial Terms ----
@@ -279,7 +282,7 @@ func BuildSOWPDF(d *SOWData) []byte {
 	if nonEmpty(d.Commercial.CofundingProgram) {
 		p.WriteValue(marginX, contentW, d.Commercial.CofundingProgram)
 	} else {
-		p.SetFont("F1", 9.5)
+		p.SetFont(fontBody, 9.5)
 		p.SetColor(colSlate)
 		p.Paragraph(marginX, contentW, "Not applicable - no co-funding/financing program is associated with this engagement.")
 	}
@@ -294,7 +297,7 @@ func BuildSOWPDF(d *SOWData) []byte {
 
 	// ---- 13. Term ----
 	p.SectionHeading("13. Term, Termination & Transition")
-	p.SetFont("F1", 9.5)
+	p.SetFont(fontBody, 9.5)
 	p.SetColor(colSlate)
 	p.WriteValue(marginX, contentW, "Term: from Effective Date until final deliverable acceptance, or "+firstNonEmpty(d.Term.EndCondition, ""))
 	p.WriteValue(marginX, contentW, "Termination for convenience notice period (days): "+firstNonEmpty(d.Term.TerminationNoticeDays, ""))
@@ -302,7 +305,7 @@ func BuildSOWPDF(d *SOWData) []byte {
 
 	// ---- 14. IP ----
 	p.SectionHeading("14. Intellectual Property")
-	p.SetFont("F1", 9.5)
+	p.SetFont(fontBody, 9.5)
 	p.SetColor(colSlate)
 	p.Paragraph(marginX, contentW,
 		"Each party retains ownership of its pre-existing IP. Subject to full payment, Client owns the deliverables created specifically for Client, excluding embedded Cegeka accelerators (perpetual, non-exclusive, royalty-free license granted for use as part of the deliverable). Client retains all ownership of Client Data.")
@@ -329,7 +332,7 @@ func BuildSOWPDF(d *SOWData) []byte {
 
 	// ---- 17. Warranties ----
 	p.SectionHeading("17. Warranties, Disclaimers & Liability")
-	p.SetFont("F1", 9.5)
+	p.SetFont(fontBody, 9.5)
 	p.SetColor(colSlate)
 	p.Paragraph(marginX, contentW,
 		"17.1 Cegeka warrants Services will be performed with reasonable skill and care consistent with good industry practice. 17.2 Client acknowledges that outputs of statistical, machine learning, or generative AI models are probabilistic and may contain errors or omissions; they do not constitute professional, legal, financial, or medical advice. Cegeka does not warrant that any model or AI-based deliverable will be error-free or that a Success Metric will remain stable indefinitely under changing data/production conditions. Client is responsible for appropriate human review of AI-generated outputs before relying on them for business-critical or regulated decisions.")
@@ -354,10 +357,17 @@ func BuildSOWPDF(d *SOWData) []byte {
 
 	// Footer note on final page
 	p.Gap(16)
-	p.SetFont("F3", 8)
+	p.SetFont(fontPlaceholder, 8)
 	p.SetColor(colSlate)
 	p.Paragraph(marginX, contentW,
 		"This document requires Legal review before being sent to a client. The signature section above is intentionally left blank.")
+
+	footerTitle := "Statement of Work"
+	if nonEmpty(d.DocControl.ClientLegalName) {
+		footerTitle += " · " + d.DocControl.ClientLegalName
+	}
+	footerTitle += " · " + firstNonEmpty(d.Meta.Version, "v1.0")
+	p.ApplyChrome(footerTitle)
 
 	return p.Bytes()
 }
