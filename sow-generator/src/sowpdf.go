@@ -161,7 +161,7 @@ func BuildSOWPDF(d *SOWData) []byte {
 			rows[i] = []string{dl.ID, dl.Name, pr, dl.Format, dl.Milestone, dl.TargetDate, dl.AcceptanceCriteria, dl.AcceptanceProcess}
 		}
 		p.Table([]string{"#", "Deliverable", "Priority", "Format", "Mst.", "Date", "Acceptance criteria", "Acceptance process"},
-			[]float64{0.35, 1.3, 0.6, 0.5, 0.4, 0.55, 1.4, 1.2}, rows)
+			[]float64{0.3, 1.2, 0.85, 0.9, 0.4, 0.45, 1.3, 1.1}, rows)
 	}
 	p.SubHeading("5.1 Acceptance procedure")
 	days := d.Acceptance.ReviewWindowBusinessDays

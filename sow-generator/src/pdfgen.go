@@ -80,21 +80,44 @@ func wrapText(f *TTFFont, size float64, text string, maxWidth float64) []string 
 	}
 	var lines []string
 	cur := ""
-	for _, w := range words {
-		trial := w
+	pushLine := func() {
 		if cur != "" {
-			trial = cur + " " + w
-		}
-		if textWidth(f, size, trial) <= maxWidth || cur == "" {
-			cur = trial
-		} else {
 			lines = append(lines, cur)
-			cur = w
+			cur = ""
 		}
 	}
-	if cur != "" {
-		lines = append(lines, cur)
+	for _, w := range words {
+		if textWidth(f, size, w) <= maxWidth {
+			trial := w
+			if cur != "" {
+				trial = cur + " " + w
+			}
+			if cur == "" || textWidth(f, size, trial) <= maxWidth {
+				cur = trial
+			} else {
+				pushLine()
+				cur = w
+			}
+			continue
+		}
+		// w alone is wider than the column (a long unbroken token, e.g. in a
+		// narrow table cell). Never let it overflow past the column edge and
+		// never drop characters to make it fit: flush whatever's pending,
+		// then hard-break it at rune boundaries into maxWidth-fitting chunks.
+		pushLine()
+		chunk := ""
+		for _, r := range w {
+			trial := chunk + string(r)
+			if chunk == "" || textWidth(f, size, trial) <= maxWidth {
+				chunk = trial
+			} else {
+				lines = append(lines, chunk)
+				chunk = string(r)
+			}
+		}
+		cur = chunk
 	}
+	pushLine()
 	return lines
 }
 
@@ -464,7 +487,24 @@ func (p *PDF) Table(headers []string, widths []float64, rows [][]string, boldCol
 		colW[i] = contentW * w / sum
 	}
 	pad := 4.0
-	headerH := 20.0
+	headerLH := 8.5 * 1.35
+
+	// Headers wrap exactly like body cells (never draw a header as one
+	// unwrapped Tj) so a long column title can't bleed into its neighbor
+	// the same way an unwrapped body cell used to.
+	headerLines := make([][]string, len(headers))
+	headerMaxLines := 1
+	for i, h := range headers {
+		lines := wrapText(p.fonts[fontBodyBold], 8.5, strings.ToUpper(h), colW[i]-2*pad)
+		if len(lines) == 0 {
+			lines = []string{""}
+		}
+		headerLines[i] = lines
+		if len(lines) > headerMaxLines {
+			headerMaxLines = len(lines)
+		}
+	}
+	headerH := headerLH*float64(headerMaxLines) + 2*pad
 
 	drawHeader := func() {
 		p.EnsureSpace(headerH + 4)
@@ -473,8 +513,12 @@ func (p *PDF) Table(headers []string, widths []float64, rows [][]string, boldCol
 		x := marginX
 		p.SetFont(fontBodyBold, 8.5)
 		p.SetColor(colWhite)
-		for i, h := range headers {
-			p.text(x+pad, y0-headerH+6, strings.ToUpper(h))
+		for i, lines := range headerLines {
+			ly := y0 - pad - 7
+			for _, ln := range lines {
+				p.text(x+pad, ly, ln)
+				ly -= headerLH
+			}
 			x += colW[i]
 		}
 		p.y = y0 - headerH
