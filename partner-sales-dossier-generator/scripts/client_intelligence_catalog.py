@@ -1477,3 +1477,9 @@ def get_client_intelligence(client_name: str, parent: str = "", sub: str = "") -
 
     # Default fallback
     return CLIENT_CATALOG["JYSK"]
+
+try:
+    from raihan_kunder_catalog import RAIHAN_INTEL_CATALOG
+    CLIENT_CATALOG.update(RAIHAN_INTEL_CATALOG)
+except Exception as e:
+    pass

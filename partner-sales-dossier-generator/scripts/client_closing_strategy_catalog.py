@@ -422,3 +422,9 @@ def get_client_closing_strategy(client_name: str, parent: str = "", sub: str = "
         "deal_blocker_mitigation": "Blocker: Internal inertia and competing digital priorities. Mitigation: Position the 4-Week Lakehouse Jumpstart as a low-risk, fully subsidized Microsoft pilot."
     }
     return personalized
+
+try:
+    from raihan_kunder_catalog import RAIHAN_CLOSING_CATALOG
+    CLOSING_CATALOG.update(RAIHAN_CLOSING_CATALOG)
+except Exception as e:
+    pass
