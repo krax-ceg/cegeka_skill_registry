@@ -1,0 +1,166 @@
+{
+  "partners": {
+    "databricks": {
+      "id": "databricks",
+      "display_name": "Databricks",
+      "co_brand_text": "CEGEKA & DATABRICKS STRATEGIC ALLIANCE",
+      "accent_color": "#FF3621",
+      "secondary_color": "#051C2C",
+      "badge_text": "DATABRICKS ALLIANCE",
+      "logo_type": "databricks",
+      "primary_tech_stack": "Unity Catalog, Delta Lake, Delta Live Tables, Mosaic AI, Photon Engine",
+      "workload_categories": [
+        "Unified Governance (Unity Catalog)",
+        "Lakehouse Modernization (Delta Live Tables)",
+        "Enterprise GenAI (Mosaic AI)"
+      ],
+      "funding_program": "Databricks DBU Vouchers & Microsoft Azure ECIF Co-Investment",
+      "funding_tier": "Enterprise Acceleration Tier ($25,000 - $50,000+ DBU / ECIF)",
+      "funding_customer_copay": "75% Subsidized / 25% Customer Co-Pay",
+      "funding_countdown_days": 120,
+      "funding_prerequisites": [
+        "Dr. Migrate / Azure assessment completed",
+        "Cegeka designated as Claiming Partner of Record (CPOR)",
+        "Customer sign-off on 4-Week Lakehouse statement of work",
+        "Execution against 120-Day Partner Center milestone clock"
+      ],
+      "partner_provides": "Free PoV DBU compute credits ($25,000 - $40,000), dedicated field Solution Architect bench, Amsterdam EBC executive briefings, joint co-sell alignment.",
+      "when_to_involve": "Engage Databricks Partner Specialist at Day 10 for co-selling alignment; deploy Databricks Enterprise Solution Architect at Day 20 for architecture whiteboarding; invite CIO to Databricks Amsterdam EBC at Day 45."
+    },
+    "microsoft": {
+      "id": "microsoft",
+      "display_name": "Microsoft",
+      "co_brand_text": "CEGEKA & MICROSOFT STRATEGIC ALLIANCE",
+      "accent_color": "#0078D4",
+      "secondary_color": "#051C2C",
+      "badge_text": "MICROSOFT CLOUD ALLIANCE",
+      "logo_type": "microsoft",
+      "primary_tech_stack": "Microsoft Fabric, OneLake, Azure Data Factory, Power BI Direct Lake, Azure OpenAI Service",
+      "workload_categories": [
+        "Enterprise SaaS Data Fabric (OneLake)",
+        "Unified BI & Direct Lake (Power BI)",
+        "Enterprise Copilots (Azure OpenAI)"
+      ],
+      "funding_program": "Microsoft AMMP (Azure Migration & Modernization Program) & ECIF",
+      "funding_tier": "Enterprise AMMP Tier ($25,000 - $50,000+ ACR Subsidy)",
+      "funding_customer_copay": "100% Microsoft Subsidized / 0% Customer Co-Pay for Qualified PoV",
+      "funding_countdown_days": 120,
+      "funding_prerequisites": [
+        "Azure Assessment / Dr. Migrate workload scan",
+        "Partner Center PAL / CPOR association confirmed",
+        "Signed customer attestation verifying Fabric / Azure migration scope",
+        "Active 120-Day Partner Center milestone clock"
+      ],
+      "partner_provides": "Microsoft Cloud Partner ECIF direct subsidy, Azure Specialist TSP co-selling bench, executive briefing sessions at Lyngby/Oslo offices, and MACC consumption drawdown credits.",
+      "when_to_involve": "Microsoft AE account mapping at Day 7; Azure Specialist TSP joint demo at Day 18; Enterprise Cloud Director closing sign-off at Day 55."
+    },
+    "joint": {
+      "id": "joint",
+      "display_name": "Azure Databricks",
+      "co_brand_text": "CEGEKA ✕ DATABRICKS ✕ MICROSOFT TRI-PARTNER ALLIANCE",
+      "accent_color": "#FF3621",
+      "secondary_color": "#0078D4",
+      "badge_text": "AZURE DATABRICKS TRI-ALLIANCE",
+      "logo_type": "joint",
+      "primary_tech_stack": "Azure Databricks, Unity Catalog, Delta Lake, Azure Data Factory, Power BI Direct Lake, Azure OpenAI",
+      "workload_categories": [
+        "Unified Governance & Sovereign Security (Unity Catalog)",
+        "High-Performance Lakehouse Modernization (Delta Live Tables)",
+        "Enterprise Multimodal GenAI (Mosaic AI & Azure OpenAI)"
+      ],
+      "funding_program": "Dual-Subsidized Microsoft AMMP/ECIF + Databricks PoV DBU Credits",
+      "funding_tier": "Enterprise Strategic Tier ($50,000+ Combined Subsidies)",
+      "funding_customer_copay": "75% Subsidized / 25% Customer Co-Pay",
+      "funding_countdown_days": 120,
+      "funding_prerequisites": [
+        "Dr. Migrate / Azure assessment completed",
+        "Dual Partner Claiming (Cegeka CPOR on Azure + Databricks Lead Tag)",
+        "Customer attestation signed unlocking combined ECIF & DBU credits",
+        "120-Day Partner Center milestone clock"
+      ],
+      "partner_provides": "Combined Microsoft ECIF cash subsidy + Databricks compute vouchers, joint field engineering bench, 3-way commercial backing.",
+      "when_to_involve": "Tri-party account mapping at Day 10; joint architecture review with Databricks & Microsoft SAs at Day 22; executive co-sponsor dinner at Day 48."
+    },
+    "snowflake": {
+      "id": "snowflake",
+      "display_name": "Snowflake",
+      "co_brand_text": "CEGEKA & SNOWFLAKE DATA CLOUD ALLIANCE",
+      "accent_color": "#29B5E8",
+      "secondary_color": "#11567F",
+      "badge_text": "SNOWFLAKE ALLIANCE",
+      "logo_type": "snowflake",
+      "primary_tech_stack": "Snowflake Data Cloud, Snowpark, Cortex AI, Dynamic Tables, Streamlit in Snowflake",
+      "workload_categories": [
+        "Enterprise Data Warehouse Modernization",
+        "Python & ML Engineering (Snowpark)",
+        "Serverless LLM Inference (Cortex AI)"
+      ],
+      "funding_program": "Snowflake Migration Acceleration Program (MAP) & Partner Capacity Credits",
+      "funding_tier": "Snowflake Enterprise PoV Tier ($20,000 - $40,000 Capacity Credits)",
+      "funding_customer_copay": "Zero Customer Upfront / Snowflake Capacity Offset",
+      "funding_countdown_days": 90,
+      "funding_prerequisites": [
+        "Snowflake Workload Sizing & Assessment",
+        "Partner Opportunity Registration in Snowflake Partnerverse",
+        "Customer Statement of Work Sign-off",
+        "90-Day Execution Delivery Clock"
+      ],
+      "partner_provides": "Free Snowflake trial capacity credits, Field CTO architectural review, joint commercial account mapping.",
+      "when_to_involve": "Snowflake AE intro at Day 10; Snowpark architecture review at Day 20; Field CTO session at Day 45."
+    },
+    "aws": {
+      "id": "aws",
+      "display_name": "Amazon Web Services (AWS)",
+      "co_brand_text": "CEGEKA & AWS STRATEGIC ALLIANCE",
+      "accent_color": "#FF9900",
+      "secondary_color": "#232F3E",
+      "badge_text": "AWS STRATEGIC ALLIANCE",
+      "logo_type": "aws",
+      "primary_tech_stack": "AWS Lake Formation, Amazon EMR, Redshift Serverless, Amazon Bedrock, SageMaker",
+      "workload_categories": [
+        "Governed Data Lake (AWS Lake Formation)",
+        "Serverless Cloud Analytics (Amazon Redshift)",
+        "Enterprise Generative AI (Amazon Bedrock)"
+      ],
+      "funding_program": "AWS Migration Acceleration Program (MAP) & Proof of Concept (POC) Cash/Credits",
+      "funding_tier": "AWS Enterprise MAP Tier ($25,000 - $60,000 Offset Credits)",
+      "funding_customer_copay": "Funded via AWS MAP Phase 2 Assess/Mobilize",
+      "funding_countdown_days": 120,
+      "funding_prerequisites": [
+        "AWS Migration Evaluator / OLA Scan",
+        "APN Opportunity Registration",
+        "Customer Statement of Work Sign-off",
+        "120-Day MAP Milestone Clock"
+      ],
+      "partner_provides": "AWS MAP funding, dedicated Partner Solutions Architect (PSA), executive briefing center session.",
+      "when_to_involve": "APN account mapping at Day 10; PSA architecture review at Day 22; AWS Director sign-off at Day 50."
+    },
+    "gcp": {
+      "id": "gcp",
+      "display_name": "Google Cloud",
+      "co_brand_text": "CEGEKA & GOOGLE CLOUD ALLIANCE",
+      "accent_color": "#4285F4",
+      "secondary_color": "#0F9D58",
+      "badge_text": "GOOGLE CLOUD ALLIANCE",
+      "logo_type": "gcp",
+      "primary_tech_stack": "BigQuery Studio, Dataplex, Vertex AI, Gemini Enterprise, Dataflow",
+      "workload_categories": [
+        "Serverless Data Warehouse (BigQuery Studio)",
+        "Multi-Cloud Data Fabric (Dataplex)",
+        "Multimodal Foundation Models (Vertex AI / Gemini)"
+      ],
+      "funding_program": "Google Cloud Migration Acceleration & Partner PoV Subsidies",
+      "funding_tier": "Google Cloud Enterprise PoV Tier ($25,000 - $50,000 Partner Funds)",
+      "funding_customer_copay": "Google Cloud Consumption Offset",
+      "funding_countdown_days": 90,
+      "funding_prerequisites": [
+        "Google Cloud Discovery Scan",
+        "Partner Opportunity Registration in Partner Advantage",
+        "Customer SOW Sign-off",
+        "90-Day Execution Delivery Clock"
+      ],
+      "partner_provides": "Google Cloud POC consumption credits, Customer Engineer (CE) support, executive alignment.",
+      "when_to_involve": "Google Cloud AE intro at Day 10; CE architecture deep dive at Day 20; joint executive briefing at Day 45."
+    }
+  }
+}

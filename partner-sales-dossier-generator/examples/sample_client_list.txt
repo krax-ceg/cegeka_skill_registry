@@ -1,0 +1,65 @@
+Account Executive	Parent Company	Business Units / Subsidiaries
+Thomas Dinsen	Aarhus Kommune	Aarhus Kommune
+Thomas Dinsen	Arbejdsmarkedets Tillaegspension (ATP)	Arbejdsmarkedets Tillaegspension (ATP)
+Thomas Dinsen	Avinor AS	Avinor AS
+Thomas Dinsen	Bama Gruppen	Bama Gruppen
+Thomas Dinsen	BAMA Gruppen AS	BAMA Gruppen AS
+Thomas Dinsen	Bonheur ASA (Fred Olsen)	Bonheur ASA (Fred Olsen)
+Thomas Dinsen	Bonheur ASA (Fred Olsen)	Fred. Olsen AS
+Thomas Dinsen	Borr Drilling	Borr Drilling
+Thomas Dinsen	COWI	COWI
+Thomas Dinsen	Cubus	Cubus
+Thomas Dinsen	Danish Crown	Danish Crown
+Thomas Dinsen	Danish Government	Danish Government
+Thomas Dinsen	Danish Government	Lægemiddelstyrelsen
+Thomas Dinsen	Danish Government	Ministry ApS
+Thomas Dinsen	Danish Government	Sundhedsdatastyrelsen
+Thomas Dinsen	Diaverum	Diaverum
+Thomas Dinsen	Digitaliseringsministeriet (Ministry of Digital Gov)	Digitaliseringsministeriet (Ministry of Digital Gov)
+Thomas Dinsen	Dressmann AS	Dressmann AS
+Thomas Dinsen	ECCO Sko	ECCO Sko
+Thomas Dinsen	Energistyrelsen	Energistyrelsen
+Thomas Dinsen	Frederiksberg Forsyning A/S	Frederiksberg Forsyning A/S
+Thomas Dinsen	G2 Ocean	G2 Ocean
+Thomas Dinsen	Hartmann	Hartmann
+Thomas Dinsen	Jotun A/S	Jotun A/S
+Thomas Dinsen	JYSK	JYSK
+Thomas Dinsen	Kommunal Landspensjonskasse gjensidig forsikringsselskap	Kommunal Landspensjonskasse gjensidig forsikringsselskap
+Thomas Dinsen	LEO Pharma	LEO Pharma
+Thomas Dinsen	Ministry of Defence - Norway	Ministry of Defence - Norway
+Thomas Dinsen	Monjasa A/S	Monjasa A/S
+Thomas Dinsen	NAV	NAV
+Thomas Dinsen	Navico	Navico
+Thomas Dinsen	Ng Nordic AS	Ng Nordic AS
+Thomas Dinsen	NNIT A/S	NNIT A/S
+Thomas Dinsen	Nokas Group	Nokas Group
+Thomas Dinsen	Nordland Fylkeskommune	Nordland Fylkeskommune
+Thomas Dinsen	Normal A/S	Normal A/S
+Thomas Dinsen	Norwegian Air Shuttle ASA	Norwegian Air Shuttle ASA
+Thomas Dinsen	Norwegian Air Shuttle ASA	Widerøe AS
+Thomas Dinsen	Norwegian Armed Forces	Forsvarsbygg
+Thomas Dinsen	Norwegian Armed Forces	Norwegian Armed Forces
+Thomas Dinsen	Norwegian Armed Forces	Norwegian Defence Research Establishment
+Thomas Dinsen	Norwegian Directorate for Health and Social Affairs (Helsedirektoratet)	Norwegian Directorate for Health and Social Affairs (Helsedirektoratet)
+Thomas Dinsen	Petroleum Geo-Services (PGS ASA)	Petroleum Geo-Services (PGS ASA)
+Thomas Dinsen	Region Nordjylland	Region Nordjylland
+Thomas Dinsen	Rigspolitiet	Rigspolitiet
+Thomas Dinsen	Royal Unibrew	Royal Unibrew
+Thomas Dinsen	Ruter As	Ruter As
+Thomas Dinsen	Salmar AS	Salmar AS
+Thomas Dinsen	Scandinavian Tobacco Group	General Cigar Holdings
+Thomas Dinsen	Scandinavian Tobacco Group	Scandinavian Tobacco Group
+Thomas Dinsen	Scandinavian Tobacco Group	Swedish Match AB
+Thomas Dinsen	Schouw & Co.	Biomar Group A/S
+Thomas Dinsen	Schouw & Co.	Borg Automotive A/S
+Thomas Dinsen	Schouw & Co.	GPV International
+Thomas Dinsen	Schouw & Co.	Schouw & Co.
+Thomas Dinsen	Semler IT A/S	Semler IT A/S
+Thomas Dinsen	SKAT Denmark	SKAT Denmark
+Thomas Dinsen	SKAT Denmark	Skatteministeriet Denmark
+Thomas Dinsen	Strawberry Hotels (Nordic Choice Hotels)	Strawberry Hotels (Nordic Choice Hotels)
+Thomas Dinsen	TGS	TGS
+Thomas Dinsen	The Danish Financial Supervisory Authority (DFSA – Finanstillsynet)	The Danish Financial Supervisory Authority (DFSA – Finanstillsynet)
+Thomas Dinsen	VandCenter Syd	VandCenter Syd
+Thomas Dinsen	Vard	Vard
+Thomas Dinsen	Zealand Pharma	Zealand Pharma
