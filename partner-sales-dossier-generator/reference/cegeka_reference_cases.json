@@ -1,0 +1,132 @@
+{
+  "reference_cases": [
+    {
+      "id": "austrotherm",
+      "client_name": "Austrotherm",
+      "industry": "Manufacturing & Building Materials",
+      "geography": "Austria & CEE (7 Countries)",
+      "scale": "1,100 Employees, 29 Production Sites",
+      "quote": "Cegeka has a deep understanding of our business and the right, solution-oriented mindset to help us overcome our challenges.",
+      "quote_author": "Werner Habenbacher, Project Manager at Austrotherm",
+      "baseline_challenge": "Legacy data warehouse could not scale; fragmented data across D365 F&O created siloed reporting with no single source of truth.",
+      "solution": "Modern Data Platform based on Cegeka Data Reference Architecture with Power BI integration.",
+      "measurable_outcomes": [
+        "100% real-time access to company-wide financial and operational data",
+        "Eliminated reporting bottlenecks across 13 operating companies",
+        "Unified financial consolidation and operational KPI tracking"
+      ]
+    },
+    {
+      "id": "lrm-medemotion",
+      "client_name": "LRM (medEmotion Project)",
+      "industry": "Healthcare & Life Sciences Investment",
+      "geography": "Belgium, Europe",
+      "scale": "Active support to 530 portfolio companies",
+      "quote": "The central data platform simplifies the integration of various databases and enables the reuse of clinical data in a governed research context.",
+      "quote_author": "medEmotion Consortium Leadership",
+      "baseline_challenge": "Combining highly sensitive patient data from hospitals, wearables, and clinical trials while adhering to strict privacy laws without centralized governance.",
+      "solution": "Centralized, governed Azure platform featuring Medallion architecture (Bronze/Silver/Gold Delta Lake), Azure Data Factory, and Private Secure Research Environments (PSREs) with FHIR/OMOP compliance.",
+      "measurable_outcomes": [
+        "End-to-end GDPR privacy-by-design with 'Hold Your Own Key' encryption",
+        "Automated data ingestion from hospital EPD/EHR systems into secure research enclaves",
+        "Active multi-center clinical trials accelerated by 4x"
+      ]
+    },
+    {
+      "id": "cera",
+      "client_name": "Cera (KBC Group)",
+      "industry": "Financial Services & Cooperative",
+      "geography": "Belgium",
+      "scale": "400,000 Members, Core Shareholder of KBC Group",
+      "quote": "I felt not only the knowledge and experience among Cegeka's people, but also their enthusiasm.",
+      "quote_author": "Bert Craps, Director & Management Committee Member at Cera",
+      "baseline_challenge": "Disconnection between member interests and offerings led to rising dropout risk; no structured way to capture behavioral signals at scale.",
+      "solution": "AI-infused 360° Data Platform built with automated NLP classification of offerings and ML-based member interest vector modeling.",
+      "measurable_outcomes": [
+        "Thousands of cooperative offerings automatically categorized via NLP",
+        "Personalized member profiles driving 35% higher campaign engagement",
+        "Similarity vectors generating targeted experiences for low-engagement segments"
+      ]
+    },
+    {
+      "id": "ggz-rivierduinen",
+      "client_name": "GGZ Rivierduinen",
+      "industry": "Mental Healthcare & Public Health",
+      "geography": "Netherlands",
+      "scale": "Thousands of psychiatric patients across multi-site care centers",
+      "quote": "Automating clinical text processing unlocked proactive patient intervention while maintaining ironclad Dutch privacy standards.",
+      "quote_author": "Data & Analytics Program Board, GGZ Rivierduinen",
+      "baseline_challenge": "Fragmented clinical notes across silos, high missed-appointment rates, and administrative burden on healthcare practitioners.",
+      "solution": "Centralized governed Data Lakehouse with 'Gold Data Model' coupled with Azure OpenAI NLP models, utilizing DEDUCE de-identification for Dutch clinical records.",
+      "measurable_outcomes": [
+        "Automated no-show detection preventing significant financial penalties",
+        "Unified clinical data foundation enabling real-time suicide prevention monitoring",
+        "100% compliance with Dutch AVG and medical privacy standards"
+      ]
+    },
+    {
+      "id": "bridgestone",
+      "client_name": "Bridgestone EU",
+      "industry": "Automotive, Fleet & Logistics",
+      "geography": "Europe (Pan-EU)",
+      "scale": "Global leader in mobility & tire manufacturing",
+      "quote": "Cegeka modernized and stabilized our data engineering pipelines, achieving measurable cost reductions and self-service analytics adoption across Europe.",
+      "quote_author": "Head of EU Analytics, Bridgestone",
+      "baseline_challenge": "Fragmented analytics across fleet, supply chain, and platform domains; heavy manual reporting in Excel and unscalable Tableau clusters.",
+      "solution": "Consolidated cloud data engineering pipelines with automated QA validation loops, cluster optimization, and unified Power BI semantic models.",
+      "measurable_outcomes": [
+        "Substantial compute cost reduction via cluster and storage optimization",
+        "Eliminated manual spreadsheet workflows across EU fleet operations",
+        "Accelerated self-service adoption across 4 cross-functional business domains"
+      ]
+    },
+    {
+      "id": "fluvius",
+      "client_name": "Fluvius",
+      "industry": "Energy & Utilities",
+      "geography": "Belgium",
+      "scale": "3+ Million Digital Smart Meters, Pan-regional Grid Operator",
+      "quote": "A future-proof cloud data platform capable of processing millions of 15-minute smart meter readings with sub-second auditable precision.",
+      "quote_author": "Grid Digitalization Office, Fluvius",
+      "baseline_challenge": "Massive data ingestion volume from 3M+ smart meters arriving every 15 minutes; legacy relational systems collapsed under complex tariff calculations.",
+      "solution": "Scalable cloud-based Data Lakehouse with centralized calculation engines, streaming ingestion, and API-driven distribution to consumer portals.",
+      "measurable_outcomes": [
+        "Reliable 15-minute interval processing for millions of smart meters",
+        "Standardized, auditable complex business rules across energy grid transition",
+        "AI-ready foundation for grid capacity forecasting and power balancing"
+      ]
+    },
+    {
+      "id": "nordic-paper",
+      "client_name": "Nordic Paper",
+      "industry": "Process Manufacturing & Paper Products",
+      "geography": "Sweden & Nordics",
+      "scale": "Multiple Nordic paper mills and global export footprint",
+      "quote": "Unifying operational technology (OT) and ERP data eliminated weekly reporting delays and reduced our cycle times by up to 70%.",
+      "quote_author": "IT & Operational Technology Leadership, Nordic Paper",
+      "baseline_challenge": "OT sensor data trapped in plant historians while ERP data lived in siloed applications; manual month-end closing took up to 2 weeks.",
+      "solution": "Modern data architecture with structured 5-layer ingestion (Iron, Bronze, Silver, Gold, Platinum) integrating 6 disparate source systems.",
+      "measurable_outcomes": [
+        "Reporting cycle times reduced by 60–70%, saving 800–1,000+ hours monthly",
+        "Decision lead times cut from 2 weeks to near real-time operational alerts",
+        "Rollout of unified self-service semantic models to 100+ business stakeholders"
+      ]
+    },
+    {
+      "id": "water-link",
+      "client_name": "Water-link",
+      "industry": "Public Utilities & Water Infrastructure",
+      "geography": "Belgium",
+      "scale": "Critical municipal water distribution infrastructure",
+      "quote": "Decoupling our operational telemetry from proprietary vendor lock-in gave us complete sovereign control over our sensor intelligence.",
+      "quote_author": "Digital Transformation Lead, Water-link",
+      "baseline_challenge": "Fragmented vendor silos across water distribution pumps and sensors; proprietary software locked telemetry data away from enterprise analytics.",
+      "solution": "Centralized Digital Twin Data Platform consolidating IoT operational telemetry into an open format for predictive maintenance.",
+      "measurable_outcomes": [
+        "Eliminated vendor lock-in with open data storage",
+        "Real-time operational visibility across physical water network assets",
+        "Foundation established for AI-driven leak detection and pressure optimization"
+      ]
+    }
+  ]
+}

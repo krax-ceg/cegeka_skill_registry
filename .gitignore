@@ -1,1 +1,6 @@
 sow_generator_feedback/
+__pycache__/
+*.py[cod]
+*$py.class
+.DS_Store
+
