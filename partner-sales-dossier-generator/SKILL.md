@@ -118,10 +118,44 @@ python3 <skill_dir>/scripts/generate_partner_dossier.py \
 ### Options:
 - `--partner`: `databricks` (default), `microsoft`, `joint`, `snowflake`, `aws`, `gcp`, or custom.
 - `--mode`: `sales-dossier` (8-part strategic structure) or `closing-plan` (4-pillar deal closing execution plan).
-- `--client-list`: Path to file containing target client accounts.
+- `--client-list`: Path to file containing target client accounts (e.g., `.tsv` or `.txt`).
+- `--deck-title`: (Optional) Custom slide deck title (e.g., `"Raihan Chowdhury Microsoft kunder"`).
+- `--lead-rep`: (Optional) Lead Account Executive or Cloud & AI Specialist attribution (e.g., `"Raihan Chowdhury / Mårten Palm"`).
 - `--output`: Target HTML file path.
 - `--clients`: (Optional) Comma-separated list of specific clients to compile.
 - `--max-clients`: (Optional) Limit total clients for rapid testing.
+
+---
+
+## 4.1 Output Directory & Filename Conventions
+
+When compiling client intelligence, manifests, sales dossiers, closing plans, or executive briefs for a specific partner and sales representative / account manager, always follow these structure and naming standards:
+
+### 1. Hierarchical Directory Structure (`snake_case`):
+Organize outputs into a top-level partner folder, followed by an account manager subfolder:
+```
+<workspace_root>/<partner_slug>/<account_manager_slug>/
+```
+*Examples:*
+- `microsoft/raihan_chowdhury/`
+- `databricks/marten_palm/`
+- `joint_azure_databricks/marcus_eklund/`
+
+### 2. Date-Stamped Filename Standards (`snake_case`):
+Every generated artifact must include the execution date formatted as `<YYYY_MM_DD>` in `snake_case`:
+- **Account Manifest (TSV)**: `<account_manager>_<partner>_kunder_<YYYY_MM_DD>.tsv`
+  - *Example*: `microsoft/raihan_chowdhury/raihan_chowdhury_microsoft_kunder_2026_09_23.tsv`
+- **Client Intelligence Catalog (Python)**: `<account_manager>_kunder_catalog_<YYYY_MM_DD>.py`
+  - *Example*: `microsoft/raihan_chowdhury/raihan_kunder_catalog_2026_09_23.py`
+- **Interactive Sales Dossier (HTML)**: `<account_manager>_<partner>_kunder_sales_dossier_<YYYY_MM_DD>.html`
+  - *Example*: `microsoft/raihan_chowdhury/raihan_chowdhury_microsoft_kunder_sales_dossier_2026_09_23.html`
+- **Interactive Closing Plan (HTML)**: `<account_manager>_<partner>_kunder_closing_plan_<YYYY_MM_DD>.html`
+  - *Example*: `microsoft/raihan_chowdhury/raihan_chowdhury_microsoft_kunder_closing_plan_2026_09_23.html`
+- **Executive Summary / Deal Brief (Markdown)**: `<account_manager>_<partner>_kunder_summary_<YYYY_MM_DD>.md`
+  - *Example*: `microsoft/raihan_chowdhury/raihan_chowdhury_microsoft_kunder_summary_2026_09_23.md`
+
+### 3. Dynamic Deal Prioritization:
+For rep-specific portfolios, dynamically recalculate Expected Value ($\text{EV} = P \times V$) across the rep's client universe to rank the Top 5 priority deals directly on Slide 0, rather than relying on a static global top 5 list.
 
 ---
 

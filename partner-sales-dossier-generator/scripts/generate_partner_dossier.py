@@ -315,16 +315,16 @@ HTML_UNIFIED_TEMPLATE = """<!DOCTYPE html>
                                 </span>
                             </div>
                             <h1 class="text-3xl font-serif font-bold text-brand-navy tracking-tight">
-                                Top 5 High-Yield {{ partner.display_name }} Opportunities
+                                {{ deck_title or ("Top 5 High-Yield " + partner.display_name + " Opportunities") }}
                             </h1>
                             <p class="text-xs text-slate-500 mt-0.5">
-                                Executive account prioritization ranked by risk-adjusted expected revenue for {{ partner.display_name }} adoption across 64 Nordic enterprise accounts.
+                                Executive account prioritization ranked by risk-adjusted expected revenue for {{ partner.display_name }} adoption across {{ clients|length }} Nordic enterprise accounts.
                             </p>
                         </div>
 
                         <div class="text-right">
                             <div class="text-[11px] font-mono text-slate-400">
-                                Lead Account Executive: <strong class="text-slate-700">Thomas Dinsen</strong>
+                                Lead Team: <strong class="text-slate-700">{{ lead_rep or (clients[0].account_executive if clients else 'Account Executive') }}</strong>
                             </div>
                             <div class="text-xs font-mono font-bold text-brand-navy mt-0.5">
                                 Executive Landing Page (Deck Overview)
@@ -339,17 +339,17 @@ HTML_UNIFIED_TEMPLATE = """<!DOCTYPE html>
                     <div class="grid grid-cols-2 lg:grid-cols-5 gap-3 my-4">
                         <div class="p-3 bg-brand-navy text-white rounded-lg text-center">
                             <span class="text-[9px] font-mono uppercase tracking-wider text-slate-300 block">Total Top 5 Pipeline</span>
-                            <span class="text-xl font-bold font-mono text-white mt-0.5 block">€44,240,000</span>
+                            <span class="text-xl font-bold font-mono text-white mt-0.5 block">{{ total_top5_pipeline or '€44,240,000' }}</span>
                             <span class="text-[9px] text-slate-300">Combined 3-Yr Addressable</span>
                         </div>
                         <div class="p-3 bg-brand-navy text-white rounded-lg text-center border-b-2 border-b-emerald-400">
                             <span class="text-[9px] font-mono uppercase tracking-wider text-emerald-300 block">Risk-Adjusted EV</span>
-                            <span class="text-xl font-bold font-mono text-emerald-400 mt-0.5 block">€33,287,800</span>
+                            <span class="text-xl font-bold font-mono text-emerald-400 mt-0.5 block">{{ total_top5_ev or '€33,287,800' }}</span>
                             <span class="text-[9px] text-emerald-200 font-medium">Weighted Revenue Potential</span>
                         </div>
                         <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 text-center">
                             <span class="text-[9px] font-mono uppercase tracking-wider text-slate-500 block">Avg Win Likelihood</span>
-                            <span class="text-xl font-bold font-mono text-brand-navy mt-0.5 block">75.4%</span>
+                            <span class="text-xl font-bold font-mono text-brand-navy mt-0.5 block">{{ avg_win_pct or '75.4' }}%</span>
                             <span class="text-[9px] text-emerald-600 font-semibold">High Strategic Readiness</span>
                         </div>
                         <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 text-center">
@@ -359,7 +359,7 @@ HTML_UNIFIED_TEMPLATE = """<!DOCTYPE html>
                         </div>
                         <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 text-center">
                             <span class="text-[9px] font-mono uppercase tracking-wider text-slate-500 block">Total Accounts Mapped</span>
-                            <span class="text-xl font-bold font-mono text-partner-accent mt-0.5 block">64 Clients</span>
+                            <span class="text-xl font-bold font-mono text-partner-accent mt-0.5 block">{{ clients|length }} Clients</span>
                             <span class="text-[9px] text-slate-500">100% Portfolio Coverage</span>
                         </div>
                     </div>
@@ -431,12 +431,12 @@ HTML_UNIFIED_TEMPLATE = """<!DOCTYPE html>
                 <!-- Footer -->
                 <div class="mt-4 pt-3 border-t border-brand-border flex items-center justify-between text-[11px] text-slate-500 font-mono">
                     <div class="flex items-center space-x-4">
-                        <span>Portfolio Strategy: <strong class="text-brand-navy">64 Enterprise Accounts</strong></span>
+                        <span>Portfolio Strategy: <strong class="text-brand-navy">{{ clients|length }} Enterprise Accounts</strong></span>
                         <span>Partner Program: <strong class="text-emerald-700">{{ partner.funding_program }}</strong></span>
                     </div>
                     <div>
                         <button onclick="goToSlide(1)" class="text-xs font-semibold text-brand-navy hover:text-brand-teal flex items-center gap-1">
-                            <span>Browse All 64 Client Slides</span>
+                            <span>Browse All {{ clients|length }} Client Slides</span>
                             <i data-lucide="chevron-right" class="w-4 h-4"></i>
                         </button>
                     </div>
@@ -864,6 +864,8 @@ def main():
     parser.add_argument("--output", default="", help="Output HTML filename")
     parser.add_argument("--clients", default="", help="Comma-separated client names")
     parser.add_argument("--max-clients", type=int, default=100, help="Max clients to process")
+    parser.add_argument("--deck-title", default="", help="Custom title for deck landing page")
+    parser.add_argument("--lead-rep", default="", help="Lead AE / Specialist name for landing page")
     args = parser.parse_args()
 
     # Resolve Partner
@@ -937,17 +939,54 @@ def main():
 
     clients = clients[:args.max_clients]
 
+    # Check for Raihan top deals vs general top deals
+    try:
+        from raihan_kunder_catalog import RAIHAN_TOP_DEALS
+        is_raihan_list = any("raihan" in c.get("account_executive", "").lower() or c["name"] in [d["client_name"] for d in RAIHAN_TOP_DEALS] for c in clients)
+    except Exception:
+        is_raihan_list = False
+        RAIHAN_TOP_DEALS = []
+
+    priority_deals_source = RAIHAN_TOP_DEALS if (is_raihan_list and RAIHAN_TOP_DEALS) else TOP_PRIORITY_DEALS
+
     # Map Top 5 Deals
     enriched_top_deals = []
-    for d in TOP_PRIORITY_DEALS:
+    for d in priority_deals_source:
         deal_copy = dict(d)
         matched_idx = None
         for s_name, s_num in slide_map.items():
             if d["client_name"].lower() in s_name or s_name in d["client_name"].lower():
                 matched_idx = s_num
                 break
-        deal_copy["target_slide_idx"] = matched_idx if matched_idx is not None else d["target_slide_idx"]
+        deal_copy["target_slide_idx"] = matched_idx if matched_idx is not None else d.get("target_slide_idx", 1)
         enriched_top_deals.append(deal_copy)
+
+    # Compute macro KPI numbers for Slide 0
+    try:
+        def parse_eur(v):
+            return int(''.join(ch for ch in str(v) if ch.isdigit()))
+        total_pipe = sum(parse_eur(d["deal_value_eur"]) for d in enriched_top_deals)
+        total_ev = sum(parse_eur(d["expected_value_eur"]) for d in enriched_top_deals)
+        avg_win = sum(d["win_probability_pct"] for d in enriched_top_deals) / len(enriched_top_deals)
+        total_pipeline_str = f"€{total_pipe:,}"
+        total_ev_str = f"€{total_ev:,}"
+        avg_win_str = f"{avg_win:.1f}"
+    except Exception:
+        total_pipeline_str = "€44,240,000"
+        total_ev_str = "€33,287,800"
+        avg_win_str = "75.4"
+
+    # Default lead rep and title if not explicitly set
+    lead_rep = args.lead_rep
+    if not lead_rep and clients:
+        lead_rep = clients[0]["account_executive"]
+
+    deck_title = args.deck_title
+    if not deck_title:
+        if is_raihan_list:
+            deck_title = f"Raihan Chowdhury {partner_cfg.display_name} Kunder"
+        else:
+            deck_title = f"Top 5 High-Yield {partner_cfg.display_name} Opportunities"
 
     # Compile HTML using Jinja2
     try:
@@ -961,7 +1000,12 @@ def main():
         partner=partner_cfg,
         mode=args.mode,
         clients=clients,
-        top_deals=enriched_top_deals
+        top_deals=enriched_top_deals,
+        deck_title=deck_title,
+        lead_rep=lead_rep,
+        total_top5_pipeline=total_pipeline_str,
+        total_top5_ev=total_ev_str,
+        avg_win_pct=avg_win_str
     )
 
     output_path = os.path.abspath(args.output)
